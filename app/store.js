@@ -3,6 +3,14 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './reducers';
+import rootSaga from './actions/saga';
+
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(
+//   rootReducer,
+//   applyMiddleware(sagaMiddleware)
+// )
+// sagaMiddleware.run(rootSaga)
 
 const sagaMiddleware = createSagaMiddleware();
 export const history = createHistory();
@@ -33,17 +41,19 @@ const store = createStore(
   composeEnhancers(...enhancers)
 );
 
+sagaMiddleware.run(rootSaga)
+
 // Extensions
-store.runSaga = sagaMiddleware.run;
+// store.runSaga = sagaMiddleware.run;
 // store.injectedReducers = {}; // Reducer registry
 // store.injectedSagas = {}; // Saga registry
 
-if (module.hot) {
-  module.hot.accept('./reducers', () => {
-    store.replaceReducer(createReducer(store.injectedReducers));
-    store.dispatch({ type: '@@REDUCER_INJECTED' });
-  });
-}
+// if (module.hot) {
+//   module.hot.accept('./reducers', () => {
+//     // store.replaceReducer(createReducer(store.injectedReducers));
+//     store.dispatch({ type: '@@REDUCER_INJECTED' });
+//   });
+// }
 
 export default store;
 // export default function configureStore(initialState = {}, history) {

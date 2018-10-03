@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import injectSaga from 'utils/injectSaga';
-import saga from 'actions/saga';
-import App from './App';
 import {
   getUser,
   changeView
 } from 'actions/index';
+import App from './App';
 
 const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
@@ -18,18 +16,18 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => {
-  const user = state.user;
+  const {
+    data, absoluteView, loading, error
+  } = state.user;
   return ({
-    user: user.data,
-    view: user.view,
-    loading: user.loading,
-    error: user.error
+    user: data,
+    absoluteView,
+    loading,
+    error
   });
 };
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withSaga = injectSaga({ key: 'user', saga });
-
-export default compose(withSaga, withConnect)(App);
+export default compose(withConnect)(App);
 export { mapDispatchToProps };

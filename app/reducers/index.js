@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import userReducer from './userReducer';
-import groupReducer from './groupReducer';
+// import groupReducer from './groupReducer';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 const routeInitialState = {
@@ -14,7 +14,7 @@ function routeReducer(state = routeInitialState, action) {
       return {
         ...state,
         locationBeforeTransitions: action.payload
-      }
+      };
     default:
       return state;
   }

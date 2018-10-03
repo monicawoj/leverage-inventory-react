@@ -3,9 +3,8 @@ import {
   CHANGE_VIEW,
   USER_LOADED,
   USER_LOADING_ERROR
-} from './contants';
+} from './constants';
 
-// export action creator functions that return action object with type and payload
 export const getUser = (id) => ({
   type: GET_USER,
   id
@@ -23,4 +22,4 @@ export const userLoaded = (data) => ({
 export const userLoadingError = (error) => ({
   type: USER_LOADING_ERROR,
   error
-})
+});

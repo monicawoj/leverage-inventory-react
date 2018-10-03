@@ -11,7 +11,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.user);
     return (
       <div>
         <Helmet>
@@ -31,4 +31,5 @@ export default class App extends React.Component {
 
 App.propTypes = {
   getUser: PropTypes.func,
+  user: PropTypes.object
 };
