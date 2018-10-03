@@ -22,7 +22,7 @@ export default class App extends React.Component {
           />
         </Helmet>
         {/* <Header /> */}
-        <Routes />
+        <Routes {...this.props} />
         {/* <Footer /> */}
       </div>
     );

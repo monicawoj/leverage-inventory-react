@@ -1,22 +1,5 @@
-@import '~bulma/sass/utilities/initial-variables';
-@import '~bulma/sass/utilities/functions';
-@import '~bulma/sass/utilities/derived-variables.sass';
-@import '~bulma-modal-fx/dist/css/modal-fx.css';
-
-//Make the modal a bit wider than the default 640px;
-$modal-content-width: 800px;
-
-//Add custom gold color not available in Bulma defaults
-$gold: hsl(43, 98%, 58%);
-$gold-invert: findColorInvert($gold);
-$addColors: (
-  "gold":($gold, $gold-invert),
-);
-$colors: map-merge($colors, $addColors);
-
 //Change font to Open Sans
 body {
-  background: hsl(0, 0%, 96%);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   &.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
