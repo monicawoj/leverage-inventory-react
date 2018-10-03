@@ -1,18 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-// import Header from 'components/Header';
-// import Footer from 'components/Footer';
-// import Routes from 'containers/Routes';
+import Routes from 'containers/Routes';
 
 export default class App extends React.Component {
-  render() {
-    return <div>
-      <Helmet titleTemplate="" defaultTitle="">
-        <meta name="description" content="" />
-      </Helmet>
-      {/* <Header />
-      <Routes />
-      <Footer /> */}
-    </div>
+  componentDidMount() {
+    // get data
+    const id = '4260ccb2-60fe-46ba-8122-7ccd233cbf2d';
+    this.props.getUser(id)
   }
+
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <Helmet>
+          <title>My Results</title>
+          <meta
+            name="description"
+            content="Leverage Inventory Results"
+          />
+        </Helmet>
+        {/* <Header /> */}
+        <Routes />
+        {/* <Footer /> */}
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  getUser: PropTypes.func,
 };

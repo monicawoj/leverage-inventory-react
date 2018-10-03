@@ -1,1 +1,6 @@
-// export action creator functions
+export {
+  getUser,
+  changeView,
+  userLoaded,
+  userLoadingError
+} from './actionCreators'

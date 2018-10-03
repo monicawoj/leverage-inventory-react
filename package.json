@@ -1,7 +1,7 @@
 {
-  "name": "StaRRRt Boilerplate",
+  "name": "leverage-inventory-react",
   "version": "1.0.0",
-  "description": "React, Redux app with Bulma and styled-components styling, and based on PunkAPI beer database",
+  "description": "Wharton People Analytics Leverage Inventory - written in React with Redux",
   "repository": {
     "type": "",
     "url": ""
@@ -14,9 +14,9 @@
   "license": "",
   "scripts": {
     "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout --env.API_URL=https://leverage-inventory.wharton-research-programming.org/backend/results/",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
+    "start": "cross-env NODE_ENV=development node server --env.API_URL=https://app.leverageinventory.com/backend/results/",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
     "clean": "npm run test:clean && npm run build:clean",

@@ -1,6 +1,7 @@
-import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
-import sampleReducer from './sampleReducer';
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import userReducer from './userReducer';
+import groupReducer from './groupReducer';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 const routeInitialState = {
@@ -19,11 +20,10 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
-export default function createReducer(injectedReducers) {
-  return combineReducers({
-    routing: routeReducer,
-    sample: sampleReducer,
-    // any other main reducers
-    ...injectedReducers
-  });
-}
+const rootReducer = combineReducers({
+  routing: routeReducer,
+  user: userReducer,
+  // group: groupReducer,
+});
+
+export default rootReducer;

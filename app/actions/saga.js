@@ -1,19 +1,26 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-// import constants
-// import api information
-// import action creator functions from index
+import {
+  GET_USER
+} from './constants';
+import getApiUrl from './api';
+import request from 'utils/request';
+import {
+  userLoaded,
+  userLoadingError
+} from './actionCreators';
 
 // worker saga that performs the task
-export function* workerSaga(action) {
-
-  // try {
-  //
-  // } catch (error) {
-  //
-  // }
+export function* getUser(action) {
+  const requestUrl = getApiUrl(action.id);
+  try {
+    const data = yield call(request,requestUrl);
+    yield put(userLoaded, data);
+  } catch (error) {
+    yield put(userLoadingError, error);
+  }
 }
 
-// watcher saga that watches for an action and executes worker saga on said action
-export default function* watcherSaga() {
-  yield takeLatest(ACTION_NAME, workerSaga);
+// watcher saga
+export default function* watchGetUser() {
+  yield takeLatest(GET_USER, getUser);
 }
