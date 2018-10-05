@@ -2,5 +2,6 @@ export {
   getUser,
   changeView,
   userLoaded,
-  userLoadingError
+  userLoadingError,
+  changeComparisonGroup
 } from './actionCreators'

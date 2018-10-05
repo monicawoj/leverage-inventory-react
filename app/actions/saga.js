@@ -10,7 +10,6 @@ import {
 // worker saga that performs the task
 export function* getUser(action) {
   const requestUrl = getApiUrl(action.id);
-  console.log(requestUrl);
   try {
     const data = yield call(request, requestUrl);
     yield put(userLoaded(data));

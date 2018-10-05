@@ -13,7 +13,7 @@
 
 const getApiUrl = (id) => {
   const base = process.env.API_URL;
-  console.log(base);
+  // console.log(base);
   return `${base}?id=${id}`;
 }
 

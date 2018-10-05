@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
   getUser,
-  changeView
+  changeView,
+  changeComparisonGroup
 } from 'actions/index';
 import App from './App';
 
@@ -10,20 +11,24 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
     dispatch(getUser(id));
   },
-  changeView: () => {
-    dispatch(changeView());
+  changeView: (view) => {
+    dispatch(changeView(view));
+  },
+  changeComparisonGroup: (group) => {
+    dispatch(changeComparisonGroup(group));
   }
 });
 
 const mapStateToProps = (state) => {
   const {
-    data, absoluteView, loading, error
+    data, view, loading, error, comparisonGroup
   } = state.user;
   return ({
     user: data,
-    absoluteView,
+    view,
     loading,
-    error
+    error,
+    comparisonGroup
   });
 };
 

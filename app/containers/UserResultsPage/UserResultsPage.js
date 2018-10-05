@@ -6,7 +6,6 @@ import ViewToggle from 'components/ViewToggle';
 import ColorLegend from 'components/ColorLegend';
 import OpenEndedResponses from 'components/OpenEndedResponses';
 import Footer from 'components/Footer';
-import ChartHolder from 'components/ChartHolder';
 import SelfOnly from 'components/SelfOnly';
 import SelfAnd360 from 'components/SelfAnd360';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -14,17 +13,27 @@ import ErrorIndicator from 'components/ErrorIndicator';
 import { StyledDiv } from './styles';
 
 const UserResultsPage = (props) => {
-  const { absoluteView, user, loading, error } = props;
+  const {
+    view, user, loading, error, changeView, comparisonGroup, changeComparisonGroup
+  } = props;
+
   const { hasEnough360Ratings } = user;
 
-  const charts = hasEnough360Ratings ? <SelfAnd360 /> : <SelfOnly data={user} absoluteView={absoluteView} />;
+  const viewToggleProps = {
+    view,
+    user,
+    changeView,
+    changeComparisonGroup
+  };
+
+  const charts = hasEnough360Ratings ? <SelfAnd360 /> : <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
 
   if (loading) {
-    return <LoadingIndicator />
+    return <LoadingIndicator />;
   }
 
   if (error) {
-    return <ErrorIndicator />
+    return <ErrorIndicator />;
   }
 
   return (
@@ -32,12 +41,13 @@ const UserResultsPage = (props) => {
       <Header />
       <UserPageDescription>
         <StyledDiv>
-          <ViewToggle absoluteView={absoluteView} />
+          <ViewToggle {...viewToggleProps} />
           <ColorLegend />
         </StyledDiv>
-        <ChartHolder>
+        { charts }
+        {/* <ChartHolder>
           { charts }
-        </ChartHolder>
+        </ChartHolder> */}
         {/* <div class="chart-holder">
           <div class="self">
               <div class="chart-holder-self">
@@ -58,12 +68,23 @@ const UserResultsPage = (props) => {
       <OpenEndedResponses />
       <Footer />
     </div>
-  )
+  );
 };
 
 export default UserResultsPage;
 
 UserResultsPage.propTypes = {
-  absoluteView: PropTypes.bool,
-  user: PropTypes.object
+  view: PropTypes.oneOf([
+    'absolute',
+    'percentile'
+  ]),
+  user: PropTypes.object,
+  changeView: PropTypes.func,
+  loading: PropTypes.bool,
+  error: PropTypes.any,
+  comparisonGroup: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ]),
+  changeComparisonGroup: PropTypes.func
 };

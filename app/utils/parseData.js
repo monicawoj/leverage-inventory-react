@@ -1,6 +1,7 @@
-export default function getData(data, absoluteView, group) {
+export default function getData(data, view, group) {
+  // console.log(data);
 
-  if (absoluteView) {
+  if (view === 'absolute') {
     const self_data = [
       {
         data: {
@@ -45,7 +46,7 @@ export default function getData(data, absoluteView, group) {
     const sorted_third_data = sorted_third_data_temp.map(function(item) {
       return {"name":item[0], "value": item[1]}
     });
-    console.log(third_data);
+
     return {
       selfData: self_data,
       thirdPartyData: third_data,
@@ -122,7 +123,7 @@ function sortProperties(obj) {
   return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
 }
 
-function matchDefinition(name) {
+export function matchDefinition(name) {
   const definitions = {
     "Networks": "Cultivates a broad, disparate network.",
     "Team-building": "Builds cohesive groups. Strongly connected to organizational culture and socialization.",

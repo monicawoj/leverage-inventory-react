@@ -2,14 +2,16 @@ import {
   GET_USER,
   CHANGE_VIEW,
   USER_LOADED,
-  USER_LOADING_ERROR
+  USER_LOADING_ERROR,
+  CHANGE_COMPARISON_GROUP
 } from '../actions/constants';
 
 const initialState = {
   data: {},
-  absoluteView: true,
+  view: 'absolute',
   loading: false,
-  error: false
+  error: false,
+  comparisonGroup: false
 }
 
 function userReducer(state = initialState, action) {
@@ -20,9 +22,10 @@ function userReducer(state = initialState, action) {
         loading: true
       }
     case CHANGE_VIEW:
+      console.log('in the change view reducer');
       return {
         ...state,
-        absoluteView: !state.absoluteView
+        view: action.view
       }
     case USER_LOADED:
       return {
@@ -34,6 +37,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         error: action.error
+      }
+    case CHANGE_COMPARISON_GROUP:
+      return {
+        ...state,
+        comparisonGroup: action.group
       }
     default:
       return state;

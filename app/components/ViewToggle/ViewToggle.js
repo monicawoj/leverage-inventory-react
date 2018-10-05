@@ -3,13 +3,30 @@ import PropTypes from 'prop-types';
 import GroupOptions from 'components/GroupOptions';
 import StyledToggleHolder from './styles';
 
-const ViewToggle = ({ absoluteView }) => {
-  const groupOptions = (absoluteView) ? <GroupOptions /> : null;
+const ViewToggle = ({ view, changeView }) => {
+  const groupOptions = (view === 'absolute') ? null : <GroupOptions />;
+
   return (
     <form>
       <StyledToggleHolder>
-        <button className="absolute">Absolute</button>
-        <button className="percentile">Percentile</button>
+        <button
+          className="absolute"
+          onClick={(e) => {
+            e.preventDefault();
+            changeView('absolute');
+          }}
+        >
+          Absolute
+        </button>
+        <button
+          className="percentile"
+          onClick={(e) => {
+            e.preventDefault();
+            changeView('percentile');
+          }}
+        >
+          Percentile
+        </button>
       </StyledToggleHolder>
       { groupOptions }
     </form>
@@ -19,5 +36,6 @@ const ViewToggle = ({ absoluteView }) => {
 export default ViewToggle;
 
 ViewToggle.propTypes = {
-  absoluteView: PropTypes.bool
+  view: PropTypes.string,
+  changeView: PropTypes.func,
 };
