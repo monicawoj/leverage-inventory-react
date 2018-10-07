@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { select, selectAll, event } from 'd3-selection';
+import { select, selectAll } from 'd3-selection';
 import { scaleLinear, scaleBand } from 'd3-scale';
 import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
@@ -19,12 +19,6 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
   const svgDimensions = {
     width: Math.max(parentWidth, 300),
     height: 480
-  };
-
-  const mouseover = (e) => {
-    selectAll('.bar').style('opacity', 0.5);
-    select(e.target).style('opacity', 1);
-    select('.tooltip').style('display', 'inline');
   };
 
   const matchColor = (name) => {
@@ -54,13 +48,19 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     .padding(0.1)
     .domain(data.map((d) => d.name));
 
+  const mouseover = (e) => {
+    selectAll('.bar').style('opacity', 0.5);
+    select(e.target).style('opacity', 1);
+    select('.tooltip').style('display', 'inline');
+  };
+
   const mousemove = (e, d) => {
-    const yPosition = parseFloat(select(e.target).attr('y')) + (y.bandwidth() / 2);
+    // const yPosition = parseFloat(select(e.target).attr('y')) + (y.bandwidth() / 2);
 
     select('.tooltip')
       .html(`<span class="has-text-weight-bold">${d.name}</span><hr/>${matchDefinition(d.name)}`)
       .style('left', `${e.pageX - 32}px`)
-      .style('top', `${yPosition}px`);
+      .style('top', `${e.pageY}px`);
   };
 
   const mouseout = () => {
@@ -100,17 +100,14 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
       >
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g className="axis axis--y">
-            <g ref={(node) => select(node).call(axisLeft(y).tickSize(0))}></g>
-            {/* <text transform="rotate(-90)" y="6" dy="0.71em" textAnchor="end">
-              Frequency
-            </text> */}
+            <g ref={(node) => select(node).call(axisLeft(y).tickSize(0))} />
           </g>
           { bars }
         </g>
       </svg>
       <Tooltip className="tooltip" />
     </Fragment>
-);
+  );
 };
 
 export default ResponsiveWrapper(HorizontalBarChart);

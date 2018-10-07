@@ -5,9 +5,7 @@ import HorizontalBarChart from 'components/HorizontalBarChart';
 import getData from 'utils/parseData';
 
 const SelfOnly = ({ data, view, comparisonGroup }) => {
-  const group = (!comparisonGroup) ? data.groups[0] : comparisonGroup;
-
-  const { selfData, sortedSelfData } = getData(data, view, group);
+  const { selfData, sortedSelfData } = getData(data, view, comparisonGroup.name);
 
   let charts;
   if (view === 'absolute') {
@@ -22,14 +20,16 @@ const SelfOnly = ({ data, view, comparisonGroup }) => {
       </Fragment>
     );
   } else {
-    charts = (<div className="column">
-      <RadialBarChart data={selfData} type={view} />
-    </div>);
+    charts = (
+      <div className="column">
+        <RadialBarChart data={selfData} type={view} />
+      </div>
+    );
   }
 
   return (
     <section className="section">
-      <h2 className="has-text-centered">Self Assessment</h2>
+      <h2 className="has-text-centered is-size-3">Self Assessment</h2>
       <div className="columns is-multiline">
         { charts }
       </div>
@@ -44,7 +44,7 @@ SelfOnly.propTypes = {
     'percentile'
   ]),
   comparisonGroup: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.object,
     PropTypes.bool
   ])
 };

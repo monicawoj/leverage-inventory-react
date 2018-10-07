@@ -7,7 +7,7 @@ export default class App extends React.Component {
   componentDidMount() {
     // get data
     const id = '4260ccb2-60fe-46ba-8122-7ccd233cbf2d';
-    this.props.getUser(id)
+    this.props.getUser(id);
   }
 
   render() {

@@ -99,7 +99,7 @@ export default function getData(data, view, group) {
     const sorted_third_data = sorted_third_data_temp.map(function(item) {
       return {"name":item[0], "value": item[1]}
     });
-    console.log(third_data);
+
     return {
       selfData: self_data,
       thirdPartyData: third_data,

@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeView: (view) => {
     dispatch(changeView(view));
   },
-  changeComparisonGroup: (group) => {
-    dispatch(changeComparisonGroup(group));
+  changeComparisonGroup: (name,submissions) => {
+    dispatch(changeComparisonGroup(name,submissions));
   }
 });
 

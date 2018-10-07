@@ -18,15 +18,22 @@ const UserResultsPage = (props) => {
   } = props;
 
   const { hasEnough360Ratings } = user;
+  //const hasEnough360Ratings = 1;
 
   const viewToggleProps = {
     view,
     user,
     changeView,
-    changeComparisonGroup
+    changeComparisonGroup,
+    comparisonGroup
   };
 
-  const charts = hasEnough360Ratings ? <SelfAnd360 /> : <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
+  let charts;
+  if (hasEnough360Ratings) {
+    charts = <SelfAnd360 data={user} view={view} comparisonGroup={comparisonGroup} />;
+  } else {
+    charts = <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
+  }
 
   if (loading) {
     return <LoadingIndicator />;
@@ -45,25 +52,6 @@ const UserResultsPage = (props) => {
           <ColorLegend />
         </StyledDiv>
         { charts }
-        {/* <ChartHolder>
-          { charts }
-        </ChartHolder> */}
-        {/* <div class="chart-holder">
-          <div class="self">
-              <div class="chart-holder-self">
-              </div>
-              <div class="chart-holder-percentile">
-              </div>
-          </div>
-          <div class="third">
-            <div class="chart-holder">
-              <div class="chart-holder-third">
-              </div>
-              <div class="chart-holder-percentile">
-              </div>
-            </div>
-          </div>
-        </div> */}
       </UserPageDescription>
       <OpenEndedResponses />
       <Footer />
@@ -83,7 +71,7 @@ UserResultsPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
   comparisonGroup: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.object,
     PropTypes.bool
   ]),
   changeComparisonGroup: PropTypes.func

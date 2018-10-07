@@ -27,7 +27,8 @@ export const userLoadingError = (error) => ({
   error
 });
 
-export const changeComparisonGroup = (group) => ({
+export const changeComparisonGroup = (name, submissions) => ({
   type: CHANGE_COMPARISON_GROUP,
-  group
+  name,
+  submissions
 });

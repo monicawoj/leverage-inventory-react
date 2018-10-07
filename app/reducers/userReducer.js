@@ -12,7 +12,7 @@ const initialState = {
   loading: false,
   error: false,
   comparisonGroup: false
-}
+};
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -20,29 +20,31 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: true
-      }
+      };
     case CHANGE_VIEW:
-      console.log('in the change view reducer');
       return {
         ...state,
         view: action.view
-      }
+      };
     case USER_LOADED:
       return {
         ...state,
         loading: false,
         data: action.data
-      }
+      };
     case USER_LOADING_ERROR:
       return {
         ...state,
         error: action.error
-      }
+      };
     case CHANGE_COMPARISON_GROUP:
       return {
         ...state,
-        comparisonGroup: action.group
-      }
+        comparisonGroup: {
+          name: action.name,
+          submissions: action.submissions
+        }
+      };
     default:
       return state;
   }

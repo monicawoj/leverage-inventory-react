@@ -4,7 +4,8 @@ import getApiUrl from './api';
 import request from 'utils/request';
 import {
   userLoaded,
-  userLoadingError
+  userLoadingError,
+  changeComparisonGroup
 } from './actionCreators';
 
 // worker saga that performs the task
@@ -13,6 +14,7 @@ export function* getUser(action) {
   try {
     const data = yield call(request, requestUrl);
     yield put(userLoaded(data));
+    yield put(changeComparisonGroup(data.groups[0], data.group_avgs[data.groups[0]].Submissions))
   } catch (error) {
     yield put(userLoadingError(error));
   }

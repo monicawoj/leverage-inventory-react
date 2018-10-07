@@ -15,9 +15,15 @@ export const StyledOuterCircle = styled.circle`
 
 export const StyledText = styled.text`
   font-size: 10px;
+  text-anchor: middle;
 `;
 
 export const CenteredSvg = styled.svg`
   display: block;
   margin: auto;
+`;
+
+export const StyledLine = styled.line`
+  stroke: #ccc;
+  stroke-width: 0.4;
 `;
