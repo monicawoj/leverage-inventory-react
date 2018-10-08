@@ -21,7 +21,7 @@ function routeReducer(state = routeInitialState, action) {
 }
 
 const rootReducer = combineReducers({
-  routing: routeReducer,
+  routing: routerReducer,
   user: userReducer,
   // group: groupReducer,
 });

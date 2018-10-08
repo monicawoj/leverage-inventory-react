@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import {
   getUser,
@@ -14,8 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeView: (view) => {
     dispatch(changeView(view));
   },
-  changeComparisonGroup: (name,submissions) => {
-    dispatch(changeComparisonGroup(name,submissions));
+  changeComparisonGroup: (name, submissions) => {
+    dispatch(changeComparisonGroup(name, submissions));
   }
 });
 
@@ -28,7 +29,8 @@ const mapStateToProps = (state) => {
     view,
     loading,
     error,
-    comparisonGroup
+    comparisonGroup,
+    location: state.routing
   });
 };
 

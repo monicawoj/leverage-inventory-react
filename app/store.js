@@ -41,7 +41,7 @@ const store = createStore(
   composeEnhancers(...enhancers)
 );
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
 
 // Extensions
 // store.runSaga = sagaMiddleware.run;
