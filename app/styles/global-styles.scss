@@ -6,4 +6,8 @@ body {
   }
 }
 
+@page {
+  margin: 0.75in !important;
+}
+
 @import '~bulma/bulma.sass';

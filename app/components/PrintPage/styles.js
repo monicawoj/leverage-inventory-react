@@ -5,5 +5,5 @@ export const StyledPrintPage = styled.div`
   page-break-after: always;
   page-break-inside: avoid;
   -webkit-print-color-adjust: exact;
-  max-width: 8.5in;
+  max-width: 7in;
 `;

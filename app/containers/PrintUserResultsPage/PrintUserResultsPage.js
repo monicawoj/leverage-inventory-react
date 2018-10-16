@@ -27,7 +27,7 @@ export default class PrintUserResultsPage extends React.Component {
 
   render() {
     const {
-      view, user, loading, error,
+      user, loading, error,
     } = this.props;
 
     const { hasEnough360Ratings } = user;
@@ -53,10 +53,6 @@ export default class PrintUserResultsPage extends React.Component {
 }
 
 PrintUserResultsPage.propTypes = {
-  view: PropTypes.oneOf([
-    'absolute',
-    'percentile'
-  ]),
   user: PropTypes.object,
   loading: PropTypes.bool,
   error: PropTypes.any

@@ -4,6 +4,7 @@ import PrintPage from 'components/PrintPage';
 import RadialBarChart from 'components/RadialBarChart';
 import HorizontalBarChart from 'components/HorizontalBarChart';
 import PrintHeader from 'components/PrintHeader';
+import PrintReportDescription from 'components/PrintReportDescription';
 import getData from 'utils/parseData';
 
 class PrintSelfOnly extends React.Component {
@@ -15,6 +16,13 @@ class PrintSelfOnly extends React.Component {
     const { data } = this.props;
     const { selfData, sortedSelfData } = getData(data, 'absolute');
 
+    const coverPage = (
+      <PrintPage>
+        <PrintHeader name={`${data.first_name} ${data.last_name}`} noLegend />
+        <PrintReportDescription />
+      </PrintPage>
+    );
+
     const percentilePages = data.groups.map((group) => {
       const chartData = getData(data, 'percentile', group).selfData;
 
@@ -22,10 +30,10 @@ class PrintSelfOnly extends React.Component {
         <PrintPage key={group}>
           <PrintHeader name={`${data.first_name} ${data.last_name}`} />
           <div className="columns is-multiline">
-            <h2 className="column is-12 has-text-centered is-size-4">Self Assessment: Percentile Scores</h2>
-            <h3 className="column is-12 has-text-centered is-size-5">vs. {group.toUpperCase()}</h3>
+            <p className="column is-12 has-text-centered title">Self Assessment: Percentile Scores</p>
+            <p className="column is-12 has-text-centered subtitle">vs. {group.toUpperCase()}</p>
             <div className="column is-12">
-              <RadialBarChart data={chartData} type={'percentile'} print />
+              <RadialBarChart data={chartData} type={'percentile'} small />
             </div>
             {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit sed tempora ipsa ad, ut, praesentium excepturi a aut molestiae nostrum possimus facilis corporis eveniet dolores delectus quibusdam hic labore aspernatur.</p> */}
           </div>
@@ -35,14 +43,15 @@ class PrintSelfOnly extends React.Component {
 
     return (
       <Fragment>
+        { coverPage }
         <PrintPage>
           <PrintHeader name={`${data.first_name} ${data.last_name}`} />
           <div className="columns is-multiline">
-            <h2 className="column is-12 has-text-centered is-size-4">Self Assessment: Absolute Scores</h2>
-            <div className="column is-half">
+            <h2 className="column is-12 has-text-centered title">Self Assessment: Absolute Scores</h2>
+            <div className="column is-5">
               <HorizontalBarChart data={sortedSelfData} />
             </div>
-            <div className="column is-half">
+            <div className="column is-7">
               <RadialBarChart data={selfData} type={'absolute'} print />
             </div>
           </div>

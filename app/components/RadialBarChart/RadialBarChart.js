@@ -9,7 +9,7 @@ import { Tooltip, ResponsiveWrapper } from 'components/D3Components';
 import { svgRotate, svgTranslate } from 'utils/chartHelperFunctions';
 import { StyledCircle, StyledOuterCircle, StyledText, CenteredSvg, StyledLine } from './styles';
 
-const RadialBarChart = ({ data, type, parentWidth, print }) => {
+const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const barData = Object.entries(data[0].data).map((array) => ({
     name: array[0],
     value: array[1]
@@ -23,7 +23,8 @@ const RadialBarChart = ({ data, type, parentWidth, print }) => {
   };
 
   const formatTwoDecimals = format('.2f');
-  const barHeight = print ? 200 : Math.min(parentWidth / 2, 220);
+  // const barHeight = print ? (double ? 170 : 190) : Math.min(parentWidth / 2, 220);
+  const barHeight = small ? 190 : Math.min(parentWidth / 2, 220);
   const barColors = ['#9999ff', '#9999ff', '#9999ff', '#9999ff', '#abf9b4', '#abf9b4', '#abf9b4', '#abf9b4', '#ff7f7f', '#ff7f7f', '#9999ff', '#9999ff'];
   let domain = [0, 3];
   let tickLabels = ['1 (rarely or never)', '2 (occasionally)', '3 (often)', '4 (almost always)'];
@@ -148,6 +149,7 @@ const RadialBarChart = ({ data, type, parentWidth, print }) => {
             className="outer"
             r={barHeight}
           />
+          { layers }
           <g className="labels">
             <def>
               <path
@@ -157,7 +159,6 @@ const RadialBarChart = ({ data, type, parentWidth, print }) => {
             </def>
             { labels }
           </g>
-          { layers }
           <g className="axis">
             <g ref={(node) => select(node).call(axis)}>
               { axisTicks }

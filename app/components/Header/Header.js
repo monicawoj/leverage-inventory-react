@@ -4,7 +4,7 @@ import StyledHeader from './styles';
 
 const Header = () => (
   <StyledHeader>
-    <Link to="/print">Print Results</Link>
+    <Link to="/print" target="_blank">Print Results</Link>
   </StyledHeader>
 );
 
