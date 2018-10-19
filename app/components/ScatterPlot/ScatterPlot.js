@@ -5,7 +5,7 @@ import { scaleLinear, scaleBand } from 'd3-scale';
 import { ascending } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { format } from 'd3-format';
-import { Tooltip, ResponsiveWrapper, CenteredText, Legend } from 'components/D3Components';
+import { Tooltip, ResponsiveWrapper, CenteredText, Legend, CenteredSvg } from 'components/D3Components';
 
 const ScatterPlot = ({ groupData, focusGroupId, errorBars, parentWidth, svgId }) => {
 
@@ -13,17 +13,16 @@ const ScatterPlot = ({ groupData, focusGroupId, errorBars, parentWidth, svgId })
   data = data.sort((a, b) => ascending(+a.avg, +b.avg));
 
   const margin = {
-    top: 50,
+    top: 140,
     right: 30,
-    bottom: 20,
+    bottom: 80,
     left: 150
   };
 
   const svgDimensions = {
-    width: Math.min(parentWidth, 600),
+    width: Math.min(parentWidth, 1000),
     height: 600
   };
-
 
   const colors = [{
     tenthPercentile: 'grey',
@@ -243,10 +242,10 @@ const ScatterPlot = ({ groupData, focusGroupId, errorBars, parentWidth, svgId })
 
   return (
     <Fragment>
-      <svg
+      <CenteredSvg
         id={svgId}
-        width={svgDimensions.width + margin.left}
-        height={svgDimensions.height + margin.top}
+        width={svgDimensions.width}
+        height={svgDimensions.height}
       >
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g className="axis axis--y">
@@ -283,7 +282,7 @@ const ScatterPlot = ({ groupData, focusGroupId, errorBars, parentWidth, svgId })
         </CenteredText>
         <CenteredText
           className="subtitle has-text-weight-bold"
-          y={0}
+          y={margin.top - 50}
           x={(svgDimensions.width / 2)}
           dy="1em"
         >
@@ -292,7 +291,7 @@ const ScatterPlot = ({ groupData, focusGroupId, errorBars, parentWidth, svgId })
         <Legend dimensions={svgDimensions} margin={margin}>
           { legendEntries }
         </Legend>
-      </svg>
+      </CenteredSvg>
       <Tooltip className="focusGroupTooltip tooltip" />
       <Tooltip className="multiGroupTooltip tooltip" />
     </Fragment>
@@ -305,5 +304,6 @@ ScatterPlot.propTypes = {
   parentWidth: PropTypes.number,
   groupData: PropTypes.any,
   focusGroupId: PropTypes.string,
-  errorBars: PropTypes.bool
+  errorBars: PropTypes.bool,
+  svgId: PropTypes.string
 };
