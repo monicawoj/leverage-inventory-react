@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import Routes from 'containers/Routes';
+import { getCookie } from 'utils/cookie';
 
 export default class App extends React.Component {
   componentDidMount() {
-    // get data
-    const id = '4260ccb2-60fe-46ba-8122-7ccd233cbf2d';
+    // get data - if production, get the cookie; if development use static id
+    let id = getCookie('resultsid');
+    const env = process.env.NODE_ENV;
+    if (env === 'development') {
+      id = '4260ccb2-60fe-46ba-8122-7ccd233cbf2d';
+    }
+
     this.props.getUser(id);
   }
 
@@ -20,9 +26,7 @@ export default class App extends React.Component {
             content="Leverage Inventory Results"
           />
         </Helmet>
-        {/* <Header /> */}
         <Routes {...this.props} />
-        {/* <Footer /> */}
       </div>
     );
   }

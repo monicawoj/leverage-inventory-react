@@ -17,7 +17,7 @@ export function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-export default function getCookie(cname) {
+export function getCookie(cname) {
   const name = `${cname}=`;
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {

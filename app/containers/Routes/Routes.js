@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import UserResultsPage from 'containers/UserResultsPage/Loadable';
 import PrintUserResultsPage from 'containers/PrintUserResultsPage/Loadable';
 import ProfessorReportsPage from 'containers/ProfessorReportsPage';
-// import GroupResultsPage from 'containers/GroupResultsPage/Loadable'
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 const Routes = (parentProps) => (
