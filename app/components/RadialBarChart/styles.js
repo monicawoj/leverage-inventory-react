@@ -27,3 +27,7 @@ export const StyledLine = styled.line`
   stroke: #ccc;
   stroke-width: 0.4;
 `;
+
+export const StyledPath = styled.path`
+  opacity: 0.7;
+`;

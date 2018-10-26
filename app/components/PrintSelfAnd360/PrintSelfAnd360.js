@@ -7,6 +7,7 @@ import PrintPage from 'components/PrintPage';
 import PrintHeader from 'components/PrintHeader';
 import PrintReportDescription from 'components/PrintReportDescription';
 import getData from 'utils/parseData';
+import { StyledDivWithBorder } from './styles';
 
 class PrintSelfAnd360 extends React.Component {
   componentDidMount() {
@@ -57,10 +58,11 @@ class PrintSelfAnd360 extends React.Component {
           <PrintHeader name={`${data.first_name} ${data.last_name}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Absolute Scores</h2>
-            <div className="column is-half">
+            <StyledDivWithBorder className="column is-half">
               <h2 className="has-text-centered is-size-3">Self Assessment</h2>
               <HorizontalBarChart data={sortedSelfData} />
-            </div>
+            </StyledDivWithBorder>
+
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">360 Assessment</h2>
               <HorizontalBarChart data={sortedThirdPartyData} />

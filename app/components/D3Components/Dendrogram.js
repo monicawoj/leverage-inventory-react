@@ -60,7 +60,7 @@ const Dendrogram = ({ svgId, parentWidth }) => {
   }
 
   const studentCluster = hcluster()
-    .distance('wards') // support for 'euclidean' and 'angular'
+    .distance('euclidean') // support for 'euclidean' and 'angular'
     .linkage('avg') // support for 'avg', 'max' and 'min'
     .posKey('position')
     .data(data);
@@ -70,12 +70,12 @@ const Dendrogram = ({ svgId, parentWidth }) => {
   const d3Cluster = cluster()
     .size([height, width]);
 
-  // const diagonal = (d) => {
-  //   return "M" + d.target.y + "," + d.target.x
-  //     + "C" + (d.source.y + 100) + "," + d.target.x
-  //     + " " + (d.source.y + 100) + "," + d.source.x
-  //     + " " + d.source.y + "," + d.source.x;
-  // };
+  const diagonal = (d) => {
+    return "M" + d.target.y + "," + d.target.x
+      + "C" + (d.source.y + 100) + "," + d.target.x
+      + " " + (d.source.y + 100) + "," + d.source.x
+      + " " + d.source.y + "," + d.source.x;
+  };
 
   const squareLinkPath = (d) => {
     return `M${d.source.y} ${d.source.x} V${d.target.x} H${d.target.y}`;
@@ -160,7 +160,7 @@ const Dendrogram = ({ svgId, parentWidth }) => {
           x={svgDimensions.width / 2}
           dy="1em"
         >
-          Dissimilarity (Euclidean distance (squared) between clusters)
+          Dissimilarity (Euclidean distance between clusters)
         </CenteredText>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           { links }

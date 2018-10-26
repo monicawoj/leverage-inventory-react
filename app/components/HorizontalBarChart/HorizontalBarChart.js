@@ -6,7 +6,9 @@ import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
 import { max } from 'd3-array';
 import { matchDefinition } from 'utils/parseData';
+import { matchColor } from 'utils/chartHelperFunctions';
 import { Tooltip, ResponsiveWrapper } from 'components/D3Components';
+import { StyledRect } from './styles';
 
 const HorizontalBarChart = ({ data, parentWidth }) => {
   const margin = {
@@ -21,24 +23,6 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     height: 480
   };
 
-  const matchColor = (name) => {
-    const colors = {
-      Networks: '#9999ff',
-      'Team-building': '#9999ff',
-      Exchange: '#9999ff',
-      Allocentrism: '#9999ff',
-      'Sit. Awareness': '#abf9b4',
-      Agency: '#abf9b4',
-      Intentionality: '#abf9b4',
-      Logos: '#abf9b4',
-      Might: '#ff7f7f',
-      Ethos: '#ff7f7f',
-      Coalitions: '#9999ff',
-      Pathos: '#9999ff'
-    };
-    return colors[name];
-  };
-
   const x = scaleLinear()
     .range([0, svgDimensions.width - margin.left - margin.right])
     .domain([0, max(data, (d) => d.value + 1)]);
@@ -49,14 +33,12 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     .domain(data.map((d) => d.name));
 
   const mouseover = (e) => {
-    selectAll('.bar').style('opacity', 0.5);
+    // selectAll('.bar').style('opacity', 0.5);
     select(e.target).style('opacity', 1);
     select('.tooltip').style('display', 'inline');
   };
 
   const mousemove = (e, d) => {
-    // const yPosition = parseFloat(select(e.target).attr('y')) + (y.bandwidth() / 2);
-
     select('.tooltip')
       .html(`<span class="has-text-weight-bold">${d.name}</span><hr/>${matchDefinition(d.name)}`)
       .style('left', `${e.pageX - 32}px`)
@@ -65,19 +47,19 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
 
   const mouseout = () => {
     select('.tooltip').style('display', 'none');
-    selectAll('.bar').style('opacity', '1');
+    selectAll('.bar').style('opacity', '0.7');
   };
 
   const bars = data.map((d) => (
     <g key={d.name}>
-      <rect
+      <StyledRect
         className="bar"
         id={`bar-${d.name}`}
         y={y(d.name)}
         height={y.bandwidth()}
         x={0}
         width={x(d.value + 1)}
-        fill={matchColor(d.name)}
+        fill={matchColor(d.name, 'normal')}
         onMouseOver={mouseover}
         onMouseMove={(e) => mousemove(e, d)}
         onMouseOut={mouseout}

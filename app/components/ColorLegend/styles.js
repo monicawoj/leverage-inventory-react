@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { matchColor } from 'utils/chartHelperFunctions';
 
 const StyledColorLegend = styled.div`
   width: 130px;
@@ -20,14 +21,15 @@ const StyledColorLegend = styled.div`
       width: 20px;
       height: 20px;
       margin-right: 5px;
+      opacity: 0.6;
       &.hard {
-        background-color: #ff7f7f
+        background-color: #c96962
       }
       &.soft {
-        background-color: #9999ff
+        background-color: #6294c9
       }
       &.smart {
-        background-color: #abf9b4
+        background-color: #62c97c
       }
     }
   }

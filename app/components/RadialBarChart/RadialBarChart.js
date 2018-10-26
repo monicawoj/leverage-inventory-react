@@ -6,8 +6,8 @@ import { arc } from 'd3-shape';
 import { axisRight } from 'd3-axis';
 import { format } from 'd3-format';
 import { Tooltip, ResponsiveWrapper } from 'components/D3Components';
-import { svgRotate, svgTranslate } from 'utils/chartHelperFunctions';
-import { StyledCircle, StyledOuterCircle, StyledText, CenteredSvg, StyledLine } from './styles';
+import { svgRotate, svgTranslate, matchColor } from 'utils/chartHelperFunctions';
+import { StyledCircle, StyledOuterCircle, StyledText, CenteredSvg, StyledLine, StyledPath } from './styles';
 
 const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const barData = Object.entries(data[0].data).map((array) => ({
@@ -25,7 +25,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const formatTwoDecimals = format('.2f');
   // const barHeight = print ? (double ? 170 : 190) : Math.min(parentWidth / 2, 220);
   const barHeight = small ? 190 : Math.min(parentWidth / 2, 220);
-  const barColors = ['#9999ff', '#9999ff', '#9999ff', '#9999ff', '#abf9b4', '#abf9b4', '#abf9b4', '#abf9b4', '#ff7f7f', '#ff7f7f', '#9999ff', '#9999ff'];
+
   let domain = [0, 3];
   let tickLabels = ['1 (rarely or never)', '2 (occasionally)', '3 (often)', '4 (almost always)'];
   const tickFormat = (d, i) => tickLabels[i];
@@ -92,7 +92,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   ));
 
   const mouseover = (e) => {
-    selectAll('.bar').style('opacity', 0.5);
+    // selectAll('.bar').style('opacity', 0.5);
     select(e.target).style('opacity', 1);
     select('.radial-tooltip').style('display', 'inline');
   };
@@ -106,7 +106,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
 
   const mouseout = () => {
     select('.radial-tooltip').style('display', 'none');
-    selectAll('.bar').style('opacity', '1');
+    selectAll('.bar').style('opacity', '0.7');
   };
 
   const layers = barData.map((d, i) => {
@@ -121,16 +121,16 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
         key={d.name}
         className="layer"
       >
-        <path
+        <StyledPath
           id={`bar-${d.name}`}
           className="bar"
           d={arcPathValue}
-          fill={barColors[i % barColors.length]}
+          fill={matchColor(d.name, 'normal')}
           onMouseOver={mouseover}
           onMouseMove={(e) => mousemove(e, d)}
           onMouseOut={mouseout}
         >
-        </path>
+        </StyledPath>
       </g>
     );
   });

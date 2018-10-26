@@ -17,8 +17,8 @@ const UserResultsPage = (props) => {
     view, user, loading, error, changeView, comparisonGroup, changeComparisonGroup
   } = props;
 
-  // const { hasEnough360Ratings } = user;
-  const hasEnough360Ratings = 1;
+  const { hasEnough360Ratings } = user;
+  // const hasEnough360Ratings = 1;
 
   const viewToggleProps = {
     view,
