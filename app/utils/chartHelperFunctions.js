@@ -8,9 +8,9 @@ export function svgTranslate(x, y) {
 
 export const matchColor = (factor, colorType = 'normal') => {
   let colors = {
-    blue: '#62c97c',
+    blue: '#6294c9',
     red: '#c96962',
-    green: '#6294c9'
+    green: '#62c97c'
   };
   if (colorType === 'deep') {
     colors = {
@@ -34,4 +34,22 @@ export const matchColor = (factor, colorType = 'normal') => {
     Pathos: colors.blue
   };
   return colorsMap[factor];
+};
+
+export const matchPowerType = (factor) => {
+  const powerMap = {
+    Networks: 'soft',
+    'Team-building': 'soft',
+    Exchange: 'soft',
+    Allocentrism: 'soft',
+    'Sit. Awareness': 'smart',
+    Agency: 'smart',
+    Intentionality: 'smart',
+    Logos: 'smart',
+    Might: 'hard',
+    Ethos: 'hard',
+    Coalitions: 'soft',
+    Pathos: 'soft'
+  };
+  return powerMap[factor];
 };

@@ -12,12 +12,13 @@ const StyledToggleHolder = styled.div`
     padding: 5px;
     font-size: 16px;
     cursor: pointer;
+    border-right: 1px solid black;
     &:hover {
       color: mediumpurple;
     }
   }
-  button:first-of-type {
-    border-right: 1px solid black;
+  button:last-of-type {
+    border-right: none;
   }
 `;
 

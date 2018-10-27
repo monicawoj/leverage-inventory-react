@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import RadialBarChart from 'components/RadialBarChart';
 import HorizontalBarChart from 'components/HorizontalBarChart';
+import ItemLevelTable from 'components/ItemLevelTable';
+import itemLevelData from 'data/itemLevelData';
 import getData from 'utils/parseData';
 import { StyledBox } from './styles';
 
@@ -29,7 +31,7 @@ const SelfAnd360 = ({ data, view, comparisonGroup }) => {
         </StyledBox>
       </Fragment>
     );
-  } else {
+  } else if (view === 'percentile') {
     charts = (
       <Fragment>
         <StyledBox className="column is-half box">
@@ -39,6 +41,15 @@ const SelfAnd360 = ({ data, view, comparisonGroup }) => {
         <StyledBox className="column is-half box">
           <h2 className="has-text-centered is-size-3">360 Assessment</h2>
           <RadialBarChart data={thirdPartyData} type={view} />
+        </StyledBox>
+      </Fragment>
+    );
+  } else {
+    charts = (
+      <Fragment>
+        <StyledBox className="column is-12 box">
+          <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
+          <ItemLevelTable data={itemLevelData} />
         </StyledBox>
       </Fragment>
     );

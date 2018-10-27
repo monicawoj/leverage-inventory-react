@@ -15,7 +15,7 @@ const ViewToggle = ({
     changeComparisonGroup,
   };
 
-  const groupOptions = (view === 'absolute') ? null : <GroupOptions {...groupOptionsProps} />;
+  const groupOptions = (view === 'percentile') ? <GroupOptions {...groupOptionsProps} /> : null;
 
   return (
     <form>
@@ -37,6 +37,15 @@ const ViewToggle = ({
           }}
         >
           Percentile
+        </button>
+        <button
+          className="item-level"
+          onClick={(e) => {
+            e.preventDefault();
+            changeView('item-level');
+          }}
+        >
+          Item-Level
         </button>
       </StyledToggleHolder>
       { groupOptions }

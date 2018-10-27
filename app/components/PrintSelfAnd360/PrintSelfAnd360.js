@@ -6,6 +6,8 @@ import OpenEndedResponses from 'components/OpenEndedResponses';
 import PrintPage from 'components/PrintPage';
 import PrintHeader from 'components/PrintHeader';
 import PrintReportDescription from 'components/PrintReportDescription';
+import ItemLevelTable from 'components/ItemLevelTable';
+import itemLevelData from 'data/itemLevelData';
 import getData from 'utils/parseData';
 import { StyledDivWithBorder } from './styles';
 
@@ -84,6 +86,10 @@ class PrintSelfAnd360 extends React.Component {
           </div>
         </PrintPage>
         { percentilePages }
+        <PrintPage>
+          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
+          <ItemLevelTable data={itemLevelData} hasEnough360Ratings />
+        </PrintPage>
       </Fragment>
     );
   }

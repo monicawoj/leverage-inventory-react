@@ -12,9 +12,11 @@ export const getUser = (id) => ({
 });
 
 export const changeView = (view) => {
-  console.log(`dispatched change view with ${view}`);
-return {type: CHANGE_VIEW,
-view}
+  // console.log(`dispatched change view with ${view}`);
+  return {
+    type: CHANGE_VIEW,
+    view
+  };
 };
 
 export const userLoaded = (data) => ({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import UserPageDescription from 'components/UserPageDescription';
 import Header from 'components/Header';
@@ -28,13 +28,6 @@ const UserResultsPage = (props) => {
     comparisonGroup
   };
 
-  let charts;
-  if (hasEnough360Ratings) {
-    charts = <SelfAnd360 data={user} view={view} comparisonGroup={comparisonGroup} />;
-  } else {
-    charts = <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
-  }
-
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -43,16 +36,38 @@ const UserResultsPage = (props) => {
     return <ErrorIndicator />;
   }
 
-  return (
-    <div>
-      <Header />
-      <UserPageDescription>
+  let charts;
+  if (hasEnough360Ratings) {
+    charts = <SelfAnd360 data={user} view={view} comparisonGroup={comparisonGroup} />;
+  } else {
+    charts = <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
+  }
+
+  let content = (
+    <UserPageDescription>
+      <StyledDiv>
+        <ViewToggle {...viewToggleProps} />
+        <ColorLegend />
+      </StyledDiv>
+      { charts }
+    </UserPageDescription>
+  );
+  if (view === 'item-level') {
+    content = (
+      <Fragment>
         <StyledDiv>
           <ViewToggle {...viewToggleProps} />
           <ColorLegend />
         </StyledDiv>
         { charts }
-      </UserPageDescription>
+      </Fragment>
+    );
+  }
+
+  return (
+    <div>
+      <Header />
+      { content }
       <OpenEndedResponses />
       <Footer />
     </div>
@@ -64,7 +79,8 @@ export default UserResultsPage;
 UserResultsPage.propTypes = {
   view: PropTypes.oneOf([
     'absolute',
-    'percentile'
+    'percentile',
+    'item-level'
   ]),
   user: PropTypes.object,
   changeView: PropTypes.func,

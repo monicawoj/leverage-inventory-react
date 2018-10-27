@@ -5,6 +5,8 @@ import RadialBarChart from 'components/RadialBarChart';
 import HorizontalBarChart from 'components/HorizontalBarChart';
 import PrintHeader from 'components/PrintHeader';
 import PrintReportDescription from 'components/PrintReportDescription';
+import ItemLevelTable from 'components/ItemLevelTable';
+import itemLevelData from 'data/itemLevelData';
 import getData from 'utils/parseData';
 
 class PrintSelfOnly extends React.Component {
@@ -57,6 +59,10 @@ class PrintSelfOnly extends React.Component {
           </div>
         </PrintPage>
         { percentilePages }
+        <PrintPage>
+          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
+          <ItemLevelTable data={itemLevelData} />
+        </PrintPage>
       </Fragment>
     );
   }
