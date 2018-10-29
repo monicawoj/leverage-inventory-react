@@ -1,6 +1,6 @@
 // Important modules this config uses
 const path = require('path');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
@@ -34,6 +34,9 @@ module.exports = require('./webpack.base.babel')({
         minifyURLs: true,
       },
       inject: true
+    }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
     }),
   ],
 
