@@ -26,6 +26,7 @@ export default class ItemLevelTable extends React.Component {
 
   render() {
     const { data } = this.state;
+    console.log(data);
     const { hasEnough360Ratings } = this.props;
     const round = format('.2f');
     const tableItems = data.map((d) => (

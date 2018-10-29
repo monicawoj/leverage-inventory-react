@@ -1,6 +1,7 @@
 {
   "name": "leverage-inventory-react",
   "version": "1.0.0",
+  "homepage": "https://levinventory.staging.wpengine.com/wp-content/themes/make/leverage-inventory/src/js",
   "description": "Wharton People Analytics Leverage Inventory - written in React with Redux",
   "repository": {
     "type": "",
