@@ -13,8 +13,8 @@
 
 const getApiUrl = (id) => {
   const base = process.env.API_URL;
-  return 'https://app.leverageinventory.com/backend/results?id=4260ccb2-60fe-46ba-8122-7ccd233cbf2d'
-  // return `${base}?id=${id}`;
+  // return 'https://app.leverageinventory.com/backend/results?id=4260ccb2-60fe-46ba-8122-7ccd233cbf2d'
+  return `${base}?id=${id}`;
 }
 
 export default getApiUrl;
