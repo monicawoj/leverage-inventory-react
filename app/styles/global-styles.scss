@@ -1,7 +1,4 @@
 //Change font to Open Sans
-html {
-  font-size: 10px;
-}
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -24,3 +21,7 @@ body {
 @import '~bulma/sass/grid/columns.sass';
 @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/sass/base/_all.sass';
+
+html {
+  font-size: 10px !important;
+}
