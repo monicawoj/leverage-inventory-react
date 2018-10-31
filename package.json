@@ -15,7 +15,7 @@
   "license": "",
   "scripts": {
     "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --env.API_URL=https://leverage-inventory.wharton-research-programming.org/backend/results/ --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "cross-env NODE_ENV=production --env.API_URL=https://leverage-inventory.wharton-research-programming.org/backend/results/ webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "start": "cross-env NODE_ENV=development --env.API_URL=https://app.leverageinventory.com/backend/results/ node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
