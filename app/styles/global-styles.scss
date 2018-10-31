@@ -12,16 +12,10 @@ body {
 }
 
 @import '~bulma/bulma.sass';
-// @import '~bulma/sass/utilities/_all.sass';
-// @import '~bulma/sass/elements/box.sass';
-// @import '~bulma/sass/elements/button.sass';
-// @import '~bulma/sass/elements/table.sass';
-// @import '~bulma/sass/elements/title.sass';
-// @import '~bulma/sass/components/_all.sass';
-// @import '~bulma/sass/grid/columns.sass';
-// @import '~bulma/sass/layout/_all.sass';
-// @import '~bulma/sass/base/_all.sass';
 
 html {
   font-size: 10px !important;
+  body {
+    font-size: 12px !important;
+  }
 }
