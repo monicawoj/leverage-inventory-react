@@ -7,7 +7,8 @@ import { getCookie } from 'utils/cookie';
 export default class App extends React.Component {
   componentDidMount() {
     // get data - if production, get the cookie; if development use static id
-    let id = getCookie('resultsid');
+    // let id = getCookie('resultsid');
+    let id = 'f0721981-f0a6-4127-af7c-9f00d3fc1f21';
     const env = process.env.NODE_ENV;
     if (env === 'development') {
       id = '4260ccb2-60fe-46ba-8122-7ccd233cbf2d';
