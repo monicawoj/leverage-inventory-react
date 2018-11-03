@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import StyledHeader from './styles';
 
@@ -24,18 +24,9 @@ const PngButton = () => (
 
 const Header = () => (
   <StyledHeader>
+    <Link to="/your-leverage-inventory/your-results/">&larr; &nbsp; Back to Results Dashboard</Link>
     <PngButton />
   </StyledHeader>
 );
 
 export default Header;
-
-// Header.propTypes = {
-//   svgId: PropTypes.string,
-//   filename: PropTypes.string
-// };
-//
-// PngButton.propTypes = {
-//   svgId: PropTypes.string,
-//   filename: PropTypes.string
-// };

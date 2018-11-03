@@ -4,7 +4,7 @@ const StyledHeader = styled.div`
   height: 60px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   a, button {
     font-size: 16px;
