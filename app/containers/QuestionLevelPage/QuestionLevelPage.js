@@ -48,7 +48,6 @@ const QuestionLevelPage = (props) => {
 
   return (
     <div>
-      <Header />
       { content }
       <Footer />
     </div>

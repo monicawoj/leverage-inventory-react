@@ -1,6 +1,7 @@
 import React from 'react';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
+import Header from 'components/Header';
 import BiasMeasurementScatterplot from 'components/BiasMeasurementScatterplot';
 
 const BiasMeasurementPage = ({ user, error, loading }) => {
@@ -13,7 +14,11 @@ const BiasMeasurementPage = ({ user, error, loading }) => {
   }
 
   return (
-    <BiasMeasurementScatterplot userData={user} />
+    <div>
+      <Header />
+      <BiasMeasurementScatterplot userData={user} />
+    </div>
+
   );
 };
 

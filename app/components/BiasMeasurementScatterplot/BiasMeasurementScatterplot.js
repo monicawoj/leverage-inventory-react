@@ -93,7 +93,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
     select(selector)
       .html(`<strong>${d.factor}</strong><br/>Self-Rating: ${format('.2f')(d.selfRating)}<br/>Average 360 Rating: ${format('.2f')(d.thirdRating)}`)
       .style('left', `${e.pageX}px`)
-      .style('top', `${e.pageY - 28}px`);
+      .style('top', `${e.pageY - 264}px`);
   };
 
   const mouseout = (selector) => {
