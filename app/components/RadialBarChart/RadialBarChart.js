@@ -4,6 +4,7 @@ import { select, selectAll } from 'd3-selection';
 import { scaleSqrt } from 'd3-scale';
 import { arc } from 'd3-shape';
 import { axisRight } from 'd3-axis';
+import { event as d3event, mouse } from 'd3-selection';
 import { format } from 'd3-format';
 import { Tooltip, ResponsiveWrapper } from 'components/D3Components';
 import { svgRotate, svgTranslate, matchColor } from 'utils/chartHelperFunctions';
@@ -100,8 +101,8 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const mousemove = (e, d) => {
     selectAll('.radial-tooltip')
       .html(`<span class="has-text-weight-bold">${(domain[1] === 3) ? formatTwoDecimals(d.value + 1) : formatTwoDecimals(d.value)}</span>`)
-      .style('left', `${e.pageX - 32}px`)
-      .style('top', `${e.pageY}px`);
+      .style('left', `${mouse(document.querySelector('.radial-tooltip').parentElement)[0] - 32}px`)
+      .style('top', `${mouse(document.querySelector('.radial-tooltip').parentElement)[1]}px`);
   };
 
   const mouseout = () => {
