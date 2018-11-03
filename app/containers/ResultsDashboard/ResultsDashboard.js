@@ -50,7 +50,6 @@ const cards = sections.map((item) => (
 
 const ResultsDashboard = () => (
   <Fragment>
-    <h1>Results</h1>
     <div className="section columns">
       <div className="column is-8 columns is-multiline is-centered">
         { cards }

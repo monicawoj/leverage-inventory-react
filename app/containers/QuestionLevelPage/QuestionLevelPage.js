@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from 'components/Header';
 import ColorLegend from 'components/ColorLegend';
 import Footer from 'components/Footer';
@@ -39,7 +40,7 @@ const QuestionLevelPage = (props) => {
   const content = (
     <Fragment>
       <StyledDiv>
-        <div></div>
+        <Link to="/your-leverage-inventory/your-results/">&larr; &nbsp; Back to Results Dashboard</Link>
         <ColorLegend />
       </StyledDiv>
       { charts }
