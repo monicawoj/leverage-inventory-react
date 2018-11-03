@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { select, selectAll } from 'd3-selection';
+import { select, selectAll, event as d3event } from 'd3-selection';
 import { scaleLinear, scaleBand } from 'd3-scale';
 import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
@@ -42,7 +42,7 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     select('.tooltip')
       .html(`<span class="has-text-weight-bold">${d.name}</span><hr/>${matchDefinition(d.name)}`)
       .style('left', `${e.pageX - 32}px`)
-      .style('top', `${y(d.name)}px`);
+      .style('top', `${d3event.pageY}px`);
   };
 
   const mouseout = () => {
