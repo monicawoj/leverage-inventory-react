@@ -42,7 +42,7 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     select('.tooltip')
       .html(`<span class="has-text-weight-bold">${d.name}</span><hr/>${matchDefinition(d.name)}`)
       .style('left', `${e.pageX - 32}px`)
-      .style('top', `${d3event.pageY}px`);
+      .style('top', `${e.pageY - 200}px`);
   };
 
   const mouseout = () => {

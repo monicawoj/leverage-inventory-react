@@ -102,7 +102,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
     selectAll('.radial-tooltip')
       .html(`<span class="has-text-weight-bold">${(domain[1] === 3) ? formatTwoDecimals(d.value + 1) : formatTwoDecimals(d.value)}</span>`)
       .style('left', `${e.pageX - 32}px`)
-      .style('top', `${d3event.pageY}px`);
+      .style('top', `${e.pageY - 200}px`);
   };
 
   const mouseout = () => {
