@@ -6,14 +6,13 @@ const StyledHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  a, button {
+  button {
     font-size: 16px;
     text-transform: uppercase;
     border-radius: 5px;
     border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
     border-style: solid;
     border-width: 1px;
-    ${'' /* padding: 10px; */}
     text-align: center;
     cursor: pointer;
     text-decoration: none;

@@ -57,6 +57,7 @@ const ResultsDashboard = () => (
       <div className="column is-4">
         <StyledLink
           to="/your-leverage-inventory/your-results/print-report/"
+          target="_blank"
           className="button is-fullwidth is-primary"
           fullheight
         >
