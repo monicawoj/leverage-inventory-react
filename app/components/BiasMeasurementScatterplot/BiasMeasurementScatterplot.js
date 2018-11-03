@@ -2,13 +2,20 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { select } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
-// import { ascending } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { format } from 'd3-format';
 import { Tooltip, ResponsiveWrapper, CenteredText, CenteredSvg } from 'components/D3Components';
 import { factors } from 'utils/factorsList';
 
 const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
+
+  const correlation = '0.XX';
+  const correlationGroupMean = '0.XX';
+  const correlationGroupSd = '0.XX';
+  const bias = 'X.X';
+  const biasGroupMean = 'X.X';
+  const biasGroupSd = 'X.X';
+
   const data = factors.map((factor) => ({
     factor: factor.name,
     abrev: factor.abrev,
@@ -16,12 +23,10 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
     thirdRating: userData[`${factor.dataName}3`]
   }));
 
-console.log(data);
-
   const margin = {
-    top: 140,
-    right: 30,
-    bottom: 80,
+    top: 60,
+    right: 40,
+    bottom: 100,
     left: 120
   };
 
@@ -50,7 +55,8 @@ console.log(data);
       y1={y(d)}
       x2={margin.left + x(4.2)}
       y2={y(d)}
-      stroke={'#eee'}
+      stroke={'black'}
+      opacity={0.2}
     />
   ));
 
@@ -62,7 +68,8 @@ console.log(data);
       x1={margin.left + x(d)}
       y2={y(0.8)}
       x2={margin.left + x(d)}
-      stroke={'#eee'}
+      stroke={'black'}
+      opacity={0.2}
     />
   ));
 
@@ -102,14 +109,14 @@ console.log(data);
         className="dot"
         cx={margin.left + x(+d.selfRating)}
         cy={y(+d.thirdRating)}
-        r={6}
+        r={7}
         fill={color[0]}
         onMouseOver={() => mouseover('.tooltip')}
         onMouseMove={(e) => mousemove('.tooltip', e, d)}
         onMouseOut={() => mouseout('.tooltip')}
       />
       <text
-        transform={`translate(${margin.left + x(+d.selfRating) + 6},${y(+d.thirdRating) + 4})`}
+        transform={`translate(${margin.left + x(+d.selfRating) + 8},${y(+d.thirdRating) + 4})`}
       >
         {d.abrev}
       </text>
@@ -117,37 +124,68 @@ console.log(data);
 
   ));
 
-  const topLeftSquare = (
+  const topTriangle = (
     <path
       d={`M ${margin.left} ${0} L ${margin.left} ${y(0.8)} L ${margin.left + x(4.2)} ${0} L ${margin.left} ${0}`}
-      // x={margin.left}
-      // y={0}
-      // width={Math.abs(x(4.2) - x(0.8)) / 2}
-      // height={Math.abs(y(4.2) - y(0.8)) / 2}
       fill={color[1]}
-      opacity={0.2}
+      opacity={0.1}
     />
   );
 
-  // const bottomRightSquare = (
-  //   <rect
-  //     className="square"
-  //     x={margin.left + (Math.abs(x(4.2) - x(0.8)) / 2)}
-  //     y={Math.abs(y(4.2) - y(0.8)) / 2}
-  //     width={Math.abs(x(4.2) - x(0.8)) / 2}
-  //     height={Math.abs(y(4.2) - y(0.8)) / 2}
-  //     fill={color[1]}
-  //     opacity={0.2}
-  //   />
-  // );
+  const topTriangleText = (
+    <text
+      transform={`translate(${margin.left + x(1)},${y(3.3)})`}
+      fill="white"
+      opacity={0.9}
+      fontSize={'35px'}
+    >
+      Self > Others
+    </text>
+  );
+
+  const bottomTriangleText = (
+    <text
+      transform={`translate(${margin.left + x(2.2)},${y(1.4)})`}
+      fill={color[1]}
+      opacity={0.4}
+      fontSize={'35px'}
+    >
+      Others > Self
+    </text>
+  );
+
+  const stats = (
+    <g
+      transform={`translate(${margin.left + x(2.5)},${svgDimensions.height - (margin.bottom / 1.5) - margin.top})`}
+      className="box"
+    >
+      <CenteredText
+        className="subtitle has-text-weight-bold"
+        textAnchor="center"
+        x={0}
+        y={20}
+        dy="1em"
+      >
+        {`Correlation: ${correlation} (group mean = ${correlationGroupMean}, group sd = ${correlationGroupSd})`}
+      </CenteredText>
+      <CenteredText
+        className="subtitle has-text-weight-bold"
+        dy="1em"
+      >
+        {`Bias: ${bias} (group mean = ${biasGroupMean}, group sd = ${biasGroupSd})`}
+      </CenteredText>
+    </g>
+  );
 
   const dots = (
     <g transform={`translate(0, ${margin.top})`}>
-      { topLeftSquare }
-      {/* { bottomRightSquare } */}
+      { topTriangle }
+      { topTriangleText }
+      { bottomTriangleText }
       { xGridLines }
       { yGridLines }
       { degree45Line }
+      { stats }
       { createDots() }
     </g>
   );
@@ -200,8 +238,8 @@ console.log(data);
         </CenteredText>
         <CenteredText
           className="subtitle has-text-weight-bold"
-          y={margin.top - 50}
-          x={((svgDimensions.width + margin.left) / 2)}
+          y={margin.top / 2}
+          x={((svgDimensions.width + margin.left - margin.right) / 2)}
           dy="1em"
         >
           Bias Measurement

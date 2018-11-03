@@ -8,7 +8,12 @@ export default class ItemLevelTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data.sort((a, b) => a.surveyItem.i - b.surveyItem.i)
+      data: this.props.data.sort((a, b) => {
+        if (this.props.hasEnough360Ratings) {
+          return b.avgRating - a.avgRating;
+        }
+        return b.selfRating - a.selfRating;
+      })
     };
   }
 
@@ -34,7 +39,7 @@ export default class ItemLevelTable extends React.Component {
         <StyledTd color={matchColor(d.factor)}>{d.factor}</StyledTd>
         { hasEnough360Ratings ? <td>{round(d.avgRating)}</td> : null}
         <td>{round(d.selfRating)}</td>
-        <td>{round(d.bias)}</td>
+        { hasEnough360Ratings ? <td>{round(d.bias)}</td> : null}
         <td>{round(d.classMean)}</td>
         <td>{round(d.classStdev)}</td>
         <td>{round(d.zScore)}</td>
@@ -43,12 +48,21 @@ export default class ItemLevelTable extends React.Component {
     ));
 
     let avgRatingHeader = null;
+    let biasHeader = null;
+
     if (hasEnough360Ratings) {
       avgRatingHeader = (
         <StyledTh
           onClick={() => this.sortValues('avgRating')}
         >
           Avg 360 Rating
+        </StyledTh>
+      );
+      biasHeader = (
+        <StyledTh
+          onClick={() => this.sortValues('bias')}
+        >
+          Bias
         </StyledTh>
       );
     }
@@ -68,11 +82,7 @@ export default class ItemLevelTable extends React.Component {
             >
               Self Rating
             </StyledTh>
-            <StyledTh
-              onClick={() => this.sortValues('bias')}
-            >
-              Bias
-            </StyledTh>
+            { biasHeader }
             <StyledTh
               onClick={() => this.sortValues('classMean')}
             >

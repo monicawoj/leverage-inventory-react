@@ -13,7 +13,7 @@ const StyledHeader = styled.div`
     border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
     border-style: solid;
     border-width: 1px;
-    padding: 10px;
+    ${'' /* padding: 10px; */}
     text-align: center;
     cursor: pointer;
     text-decoration: none;
