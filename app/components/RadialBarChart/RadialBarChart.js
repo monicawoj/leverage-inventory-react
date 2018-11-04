@@ -101,7 +101,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const mousemove = (e, d) => {
     selectAll('.radial-tooltip')
       .html(`<span class="has-text-weight-bold">${(domain[1] === 3) ? formatTwoDecimals(d.value + 1) : formatTwoDecimals(d.value)}</span>`)
-      .style('left', `${e.pageX}px`)
+      .style('left', `${e.pageX + 32}px`)
       .style('top', `${e.pageY - 264}px`); //header and top padding height
   };
 
