@@ -9,12 +9,12 @@ import { factors } from 'utils/factorsList';
 
 const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
 
-  const correlation = '0.XX';
-  const correlationGroupMean = '0.XX';
-  const correlationGroupSd = '0.XX';
-  const bias = 'X.X';
-  const biasGroupMean = 'X.X';
-  const biasGroupSd = 'X.X';
+  const correlation = userData.groupCorrelation;
+  const correlationGroupMean = userData.groupCorrelationMean;
+  const correlationGroupSd = userData.groupCorrelationStdev;
+  const bias = userData.groupBias;
+  const biasGroupMean = userData.groupBiasMean;
+  const biasGroupSd = userData.groupBiasStdev;
 
   const data = factors.map((factor) => ({
     factor: factor.name,
