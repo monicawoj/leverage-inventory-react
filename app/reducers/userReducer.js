@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   data: {},
-  view: 'absolute',
+  view: 'percentile',
   loading: true,
   error: false,
   comparisonGroup: false

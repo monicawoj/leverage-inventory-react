@@ -11,7 +11,7 @@ import { StyledDiv } from 'containers/UserResultsPage/styles';
 
 const QuestionLevelPage = (props) => {
   const {
-    user, loading, error,
+    user, loading, error, comparisonGroup
   } = props;
 
   const { hasEnough360Ratings } = user;
@@ -30,11 +30,16 @@ const QuestionLevelPage = (props) => {
     factor: factors.find((item) => item.surveyName === d.factor).name
   }));
 
+  const classSubmissions = user.group_avgs.classmates.Submissions;
+
   const charts = (
     <section className="section">
       <div className="columns is-multiline">
         <div className="column">
-          <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
+          <div className="section">
+            <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
+            <h3 className="has-text-centered is-size-5">Your class contains: {classSubmissions} {classSubmissions > 1 ? 'submissions' : 'submission'}</h3>
+          </div>
           <ItemLevelTable data={data} hasEnough360Ratings={hasEnough360Ratings} />
         </div>
       </div>

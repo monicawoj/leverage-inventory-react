@@ -20,7 +20,7 @@ const ViewToggle = ({
   return (
     <form>
       <StyledToggleHolder>
-        <button
+        {/* <button
           className="absolute"
           onClick={(e) => {
             e.preventDefault();
@@ -37,15 +37,6 @@ const ViewToggle = ({
           }}
         >
           Percentile
-        </button>
-        {/* <button
-          className="item-level"
-          onClick={(e) => {
-            e.preventDefault();
-            changeView('item-level');
-          }}
-        >
-          Item-Level
         </button> */}
       </StyledToggleHolder>
       { groupOptions }

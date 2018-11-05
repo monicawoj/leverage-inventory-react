@@ -14,12 +14,12 @@ const StyledLink = styled(Link)`
 const sections = [
   {
     title: 'Your Influence Behavior',
-    subtitle: 'your raw influence behavior',
+    subtitle: 'How you influence others',
     path: 'your-influence-behavior/'
   },
   {
     title: 'Comparison Groups',
-    subtitle: 'your influence behavior compared to others',
+    subtitle: 'Your influence behavior compared to others',
     path: 'comparison-groups/'
   },
   {
