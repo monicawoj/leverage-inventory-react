@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -48,26 +49,32 @@ const cards = sections.map((item) => (
   </div>
 ));
 
-const ResultsDashboard = () => (
-  <Fragment>
-    <div className="section columns">
-      <div className="column is-8 columns is-multiline is-centered">
-        { cards }
+const ResultsDashboard = ({ user }) => {
+  const { hasEnough360Ratings } = user;
+  return (
+    <Fragment>
+      <div className="section columns">
+        <div className="column is-8 columns is-multiline is-centered">
+          { hasEnough360Ratings ? cards : cards.slice(0, cards.length-1)}
+        </div>
+        <div className="column is-4">
+          <StyledLink
+            to="/your-leverage-inventory/your-results/print-report/"
+            target="_blank"
+            className="button is-fullwidth is-primary"
+            fullheight
+          >
+            <p className="title has-text-centered has-text-white">Full PDF Report</p>
+            <p className="subtitle has-text-centered has-text-white">Printable PDF report of your results</p>
+          </StyledLink>
+        </div>
       </div>
-      <div className="column is-4">
-        <StyledLink
-          to="/your-leverage-inventory/your-results/print-report/"
-          target="_blank"
-          className="button is-fullwidth is-primary"
-          fullheight
-        >
-          <p className="title has-text-centered has-text-white">Full PDF Report</p>
-          <p className="subtitle has-text-centered has-text-white">Printable PDF report of your results</p>
-        </StyledLink>
-      </div>
-    </div>
-  </Fragment>
-
-);
+    </Fragment>
+  );
+};
 
 export default ResultsDashboard;
+
+ResultsDashboard.propTypes = {
+  user: PropTypes.object
+};
