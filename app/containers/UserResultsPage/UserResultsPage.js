@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import UserPageDescription from 'components/UserPageDescription';
 import Header from 'components/Header';
@@ -43,7 +43,7 @@ const UserResultsPage = (props) => {
     charts = <SelfOnly data={user} view={view} comparisonGroup={comparisonGroup} />;
   }
 
-  let content = (
+  const content = (
     <UserPageDescription>
       <StyledDiv>
         <ViewToggle {...viewToggleProps} />
@@ -52,17 +52,6 @@ const UserResultsPage = (props) => {
       { charts }
     </UserPageDescription>
   );
-  if (view === 'item-level') {
-    content = (
-      <Fragment>
-        <StyledDiv>
-          <ViewToggle {...viewToggleProps} />
-          <ColorLegend />
-        </StyledDiv>
-        { charts }
-      </Fragment>
-    );
-  }
 
   return (
     <div>
@@ -79,8 +68,7 @@ export default UserResultsPage;
 UserResultsPage.propTypes = {
   view: PropTypes.oneOf([
     'absolute',
-    'percentile',
-    'item-level'
+    'percentile'
   ]),
   user: PropTypes.object,
   changeView: PropTypes.func,

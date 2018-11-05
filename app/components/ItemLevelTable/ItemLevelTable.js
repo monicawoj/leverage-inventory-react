@@ -31,11 +31,10 @@ export default class ItemLevelTable extends React.Component {
 
   render() {
     const { data } = this.state;
-    console.log(data);
     const { hasEnough360Ratings } = this.props;
     const round = format('.2f');
     const tableItems = data.map((d) => (
-      <tr key={d.surveyItem.i}>
+      <tr key={d.survey_item.i}>
         <StyledTd color={matchColor(d.factor)}>{d.factor}</StyledTd>
         { hasEnough360Ratings ? <td>{round(d.avgRating)}</td> : null}
         <td>{round(d.selfRating)}</td>
@@ -43,7 +42,7 @@ export default class ItemLevelTable extends React.Component {
         <td>{round(d.classMean)}</td>
         <td>{round(d.classStdev)}</td>
         <td>{round(d.zScore)}</td>
-        <td>{d.surveyItem.text}</td>
+        <td>{d.survey_item.text}</td>
       </tr>
     ));
 
@@ -99,7 +98,7 @@ export default class ItemLevelTable extends React.Component {
               Z-score
             </StyledTh>
             <StyledTh
-              onClick={() => this.sortValues('surveyItem.i')}
+              onClick={() => this.sortValues('survey_item.i')}
             >
               Survey Item
             </StyledTh>
@@ -115,5 +114,5 @@ export default class ItemLevelTable extends React.Component {
 
 ItemLevelTable.propTypes = {
   data: PropTypes.array,
-  hasEnough360Ratings: PropTypes.bool
+  hasEnough360Ratings: PropTypes.any
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
 import Header from 'components/Header';
@@ -23,3 +24,9 @@ const BiasMeasurementPage = ({ user, error, loading }) => {
 };
 
 export default BiasMeasurementPage;
+
+BiasMeasurementPage.propTypes = {
+  user: PropTypes.object,
+  error: PropTypes.any,
+  loading: PropTypes.bool
+};

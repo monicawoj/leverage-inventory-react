@@ -41,7 +41,7 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
   const mousemove = (e, d) => {
     select('.tooltip')
       .html(`<span class="has-text-weight-bold">${d.name}</span><hr/>${matchDefinition(d.name)}`)
-      .style('left', `${e.pageX - 32}px`)
+      .style('left', `${e.pageX - 42}px`)
       .style('top', `${e.pageY - 264}px`);
   };
 

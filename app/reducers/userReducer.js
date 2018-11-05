@@ -9,7 +9,7 @@ import {
 const initialState = {
   data: {},
   view: 'absolute',
-  loading: false,
+  loading: true,
   error: false,
   comparisonGroup: false
 };

@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Header from 'components/Header';
 import ColorLegend from 'components/ColorLegend';
 import Footer from 'components/Footer';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
 import ItemLevelTable from 'components/ItemLevelTable';
-import itemLevelData from 'data/itemLevelData';
+import { factors } from 'utils/factorsList';
 import { StyledDiv } from 'containers/UserResultsPage/styles';
 
 const QuestionLevelPage = (props) => {
@@ -26,12 +25,17 @@ const QuestionLevelPage = (props) => {
     return <ErrorIndicator />;
   }
 
+  const data = user.survey.map((d) => ({
+    ...d,
+    factor: factors.find((item) => item.surveyName === d.factor).name
+  }));
+
   const charts = (
     <section className="section">
       <div className="columns is-multiline">
         <div className="column">
           <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
-          <ItemLevelTable data={itemLevelData} hasEnough360Ratings={hasEnough360Ratings} />
+          <ItemLevelTable data={data} hasEnough360Ratings={hasEnough360Ratings} />
         </div>
       </div>
     </section>

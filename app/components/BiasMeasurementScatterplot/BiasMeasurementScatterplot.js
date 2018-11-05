@@ -24,9 +24,9 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
   }));
 
   const margin = {
-    top: 60,
+    top: 80,
     right: 40,
-    bottom: 100,
+    bottom: 80,
     left: 120
   };
 
@@ -156,14 +156,14 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
 
   const stats = (
     <g
-      transform={`translate(${margin.left + x(2.5)},${svgDimensions.height - (margin.bottom / 1.5) - margin.top})`}
+      transform={`translate(${margin.left + x(2.5)},${margin.top / 4})`}
       className="box"
     >
       <CenteredText
         className="subtitle has-text-weight-bold"
         textAnchor="center"
         x={0}
-        y={20}
+        y={40}
         dy="1em"
       >
         {`Correlation: ${correlation} (group mean = ${correlationGroupMean}, group sd = ${correlationGroupSd})`}
@@ -171,6 +171,8 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
       <CenteredText
         className="subtitle has-text-weight-bold"
         dy="1em"
+        x={0}
+        y={20}
       >
         {`Bias: ${bias} (group mean = ${biasGroupMean}, group sd = ${biasGroupSd})`}
       </CenteredText>
@@ -185,7 +187,6 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
       { xGridLines }
       { yGridLines }
       { degree45Line }
-      { stats }
       { createDots() }
     </g>
   );
@@ -221,7 +222,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
         { dots }
         <CenteredText
           className="label"
-          y={svgDimensions.height + margin.bottom - margin.top}
+          y={svgDimensions.height - margin.bottom + (margin.top/2)}
           x={(svgDimensions.width + margin.left) / 2}
           dy="1em"
         >
@@ -237,13 +238,14 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
           Average Self Ratings
         </CenteredText>
         <CenteredText
-          className="subtitle has-text-weight-bold"
-          y={margin.top / 2}
+          className="title has-text-weight-bold"
+          y={0}
           x={((svgDimensions.width + margin.left - margin.right) / 2)}
           dy="1em"
         >
           Bias Measurement
         </CenteredText>
+        { stats }
       </CenteredSvg>
       <Tooltip className="tooltip" />
     </Fragment>

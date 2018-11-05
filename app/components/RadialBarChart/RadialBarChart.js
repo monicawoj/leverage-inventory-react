@@ -93,7 +93,6 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   ));
 
   const mouseover = (e) => {
-    // selectAll('.bar').style('opacity', 0.5);
     select(e.target).style('opacity', 1);
     select('.radial-tooltip').style('display', 'inline');
   };
@@ -101,7 +100,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const mousemove = (e, d) => {
     selectAll('.radial-tooltip')
       .html(`<span class="has-text-weight-bold">${(domain[1] === 3) ? formatTwoDecimals(d.value + 1) : formatTwoDecimals(d.value)}</span>`)
-      .style('left', `${e.pageX - 32}px`)
+      .style('left', `${e.pageX - 42}px`)
       .style('top', `${e.pageY - 264}px`); //header and top padding height
   };
 

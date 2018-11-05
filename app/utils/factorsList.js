@@ -2,61 +2,73 @@ export const factors = [
   {
     name: 'Agency',
     abrev: 'Ag',
-    dataName: 'Agency'
+    dataName: 'Agency',
+    surveyName: 'agency'
   },
   {
     name: 'Allocentrism',
     abrev: 'Al',
-    dataName: 'Allocentrism'
+    dataName: 'Allocentrism',
+    surveyName: 'allo'
   },
   {
     name: 'Coalitions',
     abrev: 'Co',
-    dataName: 'Coalition'
+    dataName: 'Coalition',
+    surveyName: 'coalitions'
   },
   {
     name: 'Ethos',
     abrev: 'Es',
-    dataName: 'Ethos'
+    dataName: 'Ethos',
+    surveyName: 'ethos'
   },
   {
     name: 'Exchange',
     abrev: 'Ex',
-    dataName: 'Exchange'
+    dataName: 'Exchange',
+    surveyName: 'exchange'
   },
   {
     name: 'Intentionality',
     abrev: 'In',
-    dataName: 'Intentionality'
+    dataName: 'Intentionality',
+    surveyName: 'intent'
   },
   {
     name: 'Logos',
     abrev: 'Ls',
-    dataName: 'Logos'
+    dataName: 'Logos',
+    surveyName: 'logos'
   },
   {
     name: 'Might',
     abrev: 'Mt',
-    dataName: 'Might'
+    dataName: 'Might',
+    surveyName: 'might'
   },
   {
     name: 'Networks',
     abrev: 'Nt',
-    dataName: 'Network'
+    dataName: 'Network',
+    surveyName: 'net'
   },
   {
     name: 'Pathos',
     abrev: 'Ps',
-    dataName: 'Pathos'
+    dataName: 'Pathos',
+    surveyName: 'pathos'
   },
   {
     name: 'Sit. Awareness',
     abrev: 'Sa',
-    dataName: 'SA'
+    dataName: 'SA',
+    surveyName: 'sa'
   },
   {
     name: 'Team-building',
     abrev: 'Tm',
-    dataName: 'Team'
+    dataName: 'Team',
+    surveyName: 'team'
   }
 ];
