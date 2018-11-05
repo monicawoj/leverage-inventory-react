@@ -57,6 +57,7 @@ const UserResultsPage = (props) => {
 
   return (
     <div>
+      <p>See how your influence behavior compares to other groups of people. The default comparison group is your immediate class. As an example, scoring in the 80th percentile for a tactic means you use that tactic more than 80% of your classmates, according to the assessment data.</p>
       <Header />
       { content }
       <OpenEndedResponses />

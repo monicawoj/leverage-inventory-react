@@ -16,6 +16,7 @@ const BiasMeasurementPage = ({ user, error, loading }) => {
 
   return (
     <div>
+      <p>Is your perception rooted in reality? The scatterplot below reflects how your influence behavior is gauged by yourself vs. others.</p>
       <Header />
       <BiasMeasurementScatterplot userData={user} />
     </div>

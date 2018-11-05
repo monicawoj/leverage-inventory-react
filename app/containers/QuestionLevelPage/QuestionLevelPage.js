@@ -58,6 +58,7 @@ const QuestionLevelPage = (props) => {
 
   return (
     <div>
+      <p>See how you scored for each survey question and how that compares to your class.</p>
       { content }
       <Footer />
     </div>

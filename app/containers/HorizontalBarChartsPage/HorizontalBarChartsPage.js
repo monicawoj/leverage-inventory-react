@@ -72,6 +72,7 @@ const HorizontalBarChartsPage = (props) => {
 
   return (
     <div>
+      <p>The Leverage Inventory measures your influence behavior in terms of 12 unique influence tactics, shown below. Each influence tactic maps to a specific subset of questions from the survey, which are averaged to produce a score. The scores reflect frequency of behavior: 1 = Rarely or Never, 2 = Occasionally, 3 = Often, 4 = Almost Always.</p>
       <Header />
       { content }
       <OpenEndedResponses />
