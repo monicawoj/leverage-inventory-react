@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import UserPageDescription from 'components/UserPageDescription';
+// import UserPageDescription from 'components/UserPageDescription';
 import Header from 'components/Header';
 import ViewToggle from 'components/ViewToggle';
 import ColorLegend from 'components/ColorLegend';
@@ -44,13 +44,15 @@ const UserResultsPage = (props) => {
   }
 
   const content = (
-    <UserPageDescription>
+    // <UserPageDescription>
+    <Fragment>
       <StyledDiv>
         <ViewToggle {...viewToggleProps} />
         <ColorLegend />
       </StyledDiv>
       { charts }
-    </UserPageDescription>
+    </Fragment>
+    // {/* </UserPageDescription> */}
   );
 
   return (
