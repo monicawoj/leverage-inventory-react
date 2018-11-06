@@ -20,7 +20,7 @@ for (let i = 0; i < 60; i++) {
   const randomNumber = (min, max) => (Math.random() * (max - min)) + min;
 
   itemLevelData.push({
-    surveyItem: {
+    survey_item: {
       i,
       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione porro natus incidunt?'
     },
