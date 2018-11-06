@@ -55,10 +55,10 @@ const ResultsDashboard = ({ user }) => {
     <Fragment>
       <p>The results are in! Check out the reports below to learn more about your current influence behavior.</p>
       <p>
-        Then when you are ready, visit our <a href="http://levinventory.staging.wpengine.com/resources/">Resources</a> for coaching tips on the specific influence tactics you want to develop.
+        Then when you are ready, visit our <a href="http://leverageinventory.com/resources/">Resources</a> for coaching tips on the specific influence tactics you want to develop.
       </p>
       <p>
-        <a href="http://levinventory.wpengine.com/?page_id=42">Agency</a> | <a href="http://levinventory.wpengine.com/?page_id=34">Allocentrism</a> | <a href="http://levinventory.wpengine.com/?page_id=38">Coalitions</a> | <a href="http://levinventory.wpengine.com/?page_id=31">Ethos</a> | <a href="http://levinventory.wpengine.com/?page_id=35">Exchange</a> | <a href="http://levinventory.wpengine.com/?page_id=40">Intentionality</a> | <a href="http://levinventory.wpengine.com/?page_id=33">Logos</a> | <a href="http://levinventory.wpengine.com/?page_id=36">Might</a> | <a href="http://levinventory.wpengine.com/?page_id=37">Networks</a> | <a href="http://levinventory.wpengine.com/?page_id=32">Pathos</a> | <a href="http://levinventory.wpengine.com/?page_id=41">Situation Awareness</a> | <a href="http://levinventory.wpengine.com/?page_id=39">Team-building</a>
+        <a href="http://leverageinventory.com/?page_id=42">Agency</a> | <a href="http://leverageinventory.com/?page_id=34">Allocentrism</a> | <a href="http://leverageinventory.com/?page_id=38">Coalitions</a> | <a href="http://leverageinventory.com/?page_id=31">Ethos</a> | <a href="http://leverageinventory.com/?page_id=35">Exchange</a> | <a href="http://leverageinventory.com/?page_id=40">Intentionality</a> | <a href="http://leverageinventory.com/?page_id=33">Logos</a> | <a href="http://leverageinventory.com/?page_id=36">Might</a> | <a href="http://leverageinventory.com/?page_id=37">Networks</a> | <a href="http://leverageinventory.com/?page_id=32">Pathos</a> | <a href="http://leverageinventory.com/?page_id=41">Situation Awareness</a> | <a href="http://leverageinventory.com/?page_id=39">Team-building</a>
       </p>
       <div className="section columns">
         <div className="column is-8 columns is-multiline is-centered">
