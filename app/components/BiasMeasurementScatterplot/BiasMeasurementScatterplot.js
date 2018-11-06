@@ -9,12 +9,12 @@ import { factors } from 'utils/factorsList';
 
 const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
 
-  const correlation = userData.groupCorrelation;
-  const correlationGroupMean = userData.groupCorrelationMean;
-  const correlationGroupSd = userData.groupCorrelationStdev;
-  const bias = userData.groupBias;
-  const biasGroupMean = userData.groupBiasMean;
-  const biasGroupSd = userData.groupBiasStdev;
+  const correlation = format('.2f')(userData.groupCorrelation);
+  const correlationGroupMean = format('.2f')(userData.groupCorrelationMean);
+  const correlationGroupSd = format('.2f')(userData.groupCorrelationStdev);
+  const bias = format('.2f')(userData.groupBias);
+  const biasGroupMean = format('.2f')(userData.groupBiasMean);
+  const biasGroupSd = format('.2f')(userData.groupBiasStdev);
 
   const data = factors.map((factor) => ({
     factor: factor.name,
@@ -24,9 +24,9 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
   }));
 
   const margin = {
-    top: 80,
+    top: 110,
     right: 40,
-    bottom: 80,
+    bottom: 50,
     left: 120
   };
 
@@ -100,6 +100,8 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
     select(selector).style('display', 'none');
   };
 
+  const classSubmissions = userData.group_avgs.classmates.Submissions;
+
   const createDots = () => data.map((d) => (
     <g
       className="dot"
@@ -139,7 +141,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
       opacity={0.9}
       fontSize={'35px'}
     >
-      Self > Others
+      Others > Self
     </text>
   );
 
@@ -150,7 +152,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
       opacity={0.4}
       fontSize={'35px'}
     >
-      Others > Self
+      Self > Others
     </text>
   );
 
@@ -161,9 +163,17 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
     >
       <CenteredText
         className="subtitle has-text-weight-bold"
+        dy="1em"
+        x={0}
+        y={20}
+      >
+        {`Your class contains: ${classSubmissions} ${classSubmissions > 1 ? 'submissions' : 'submission'}`}
+      </CenteredText>
+      <CenteredText
+        className="subtitle has-text-weight-bold"
         textAnchor="center"
         x={0}
-        y={40}
+        y={60}
         dy="1em"
       >
         {`Correlation: ${correlation} (group mean = ${correlationGroupMean}, group sd = ${correlationGroupSd})`}
@@ -172,7 +182,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
         className="subtitle has-text-weight-bold"
         dy="1em"
         x={0}
-        y={20}
+        y={40}
       >
         {`Bias: ${bias} (group mean = ${biasGroupMean}, group sd = ${biasGroupSd})`}
       </CenteredText>
@@ -226,7 +236,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
           x={(svgDimensions.width + margin.left) / 2}
           dy="1em"
         >
-          Average 360 Ratings
+          Average Self Rating
         </CenteredText>
         <CenteredText
           className="label"
@@ -235,7 +245,7 @@ const BiasMeasurementScatterplot = ({ userData, parentWidth, svgId }) => {
           x={0 - (svgDimensions.height / 2)}
           dy="1em"
         >
-          Average Self Ratings
+          Average 360 Rating
         </CenteredText>
         <CenteredText
           className="title has-text-weight-bold"

@@ -35,9 +35,9 @@ export default class PrintUserResultsPage extends React.Component {
 
     let charts;
     if (hasEnough360Ratings) {
-      charts = <PrintSelfAnd360 data={user} handleLoad={this.changeLoadStatus} />;
+      charts = <PrintSelfAnd360 user={user} handleLoad={this.changeLoadStatus} />;
     } else {
-      charts = <PrintSelfOnly data={user} handleLoad={this.changeLoadStatus} />;
+      charts = <PrintSelfOnly user={user} handleLoad={this.changeLoadStatus} />;
     }
 
     if (loading) {

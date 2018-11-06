@@ -30,17 +30,11 @@ const QuestionLevelPage = (props) => {
     factor: factors.find((item) => item.surveyName === d.factor).name
   }));
 
-  const classSubmissions = user.group_avgs.classmates.Submissions;
-
   const charts = (
     <section className="section">
       <div className="columns is-multiline">
         <div className="column">
-          <div className="section">
-            <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
-            <h3 className="has-text-centered is-size-5">Your class contains: {classSubmissions} {classSubmissions > 1 ? 'submissions' : 'submission'}</h3>
-          </div>
-          <ItemLevelTable data={data} hasEnough360Ratings={hasEnough360Ratings} />
+          <ItemLevelTable user={user} data={data} hasEnough360Ratings={hasEnough360Ratings} />
         </div>
       </div>
     </section>

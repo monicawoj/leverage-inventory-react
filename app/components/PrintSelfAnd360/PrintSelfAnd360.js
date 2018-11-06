@@ -2,13 +2,12 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import RadialBarChart from 'components/RadialBarChart';
 import HorizontalBarChart from 'components/HorizontalBarChart';
-import OpenEndedResponses from 'components/OpenEndedResponses';
 import PrintPage from 'components/PrintPage';
 import PrintHeader from 'components/PrintHeader';
-import PrintReportDescription from 'components/PrintReportDescription';
 import ItemLevelTable from 'components/ItemLevelTable';
-import itemLevelData from 'data/itemLevelData';
+import BiasMeasurementScatterplot from 'components/BiasMeasurementScatterplot';
 import getData from 'utils/parseData';
+import { factors } from 'utils/factorsList';
 import { StyledDivWithBorder } from './styles';
 
 class PrintSelfAnd360 extends React.Component {
@@ -17,25 +16,25 @@ class PrintSelfAnd360 extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { user } = this.props;
     const {
       selfData, sortedSelfData, thirdPartyData, sortedThirdPartyData
-    } = getData(data, 'absolute');
+    } = getData(user, 'absolute');
 
-    const coverPage = (
-      <PrintPage>
-        <PrintHeader name={`${data.first_name} ${data.last_name}`} noLegend />
-        <PrintReportDescription />
-      </PrintPage>
-    );
+    // const coverPage = (
+    //   <PrintPage>
+    //     <PrintHeader name={`${data.first_name} ${data.last_name}`} noLegend />
+    //     <PrintReportDescription />
+    //   </PrintPage>
+    // );
 
-    const percentilePages = data.groups.map((group) => {
-      const selfChartData = getData(data, 'percentile', group).selfData;
-      const thirdPartyChartData = getData(data, 'percentile', group).thirdPartyData;
+    const percentilePages = user.groups.map((group) => {
+      const selfChartData = getData(user, 'percentile', group).selfData;
+      const thirdPartyChartData = getData(user, 'percentile', group).thirdPartyData;
 
       return (
         <PrintPage key={group}>
-          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Percentile Scores</h2>
             <h3 className="column is-12 has-text-centered subtitle">vs. {group.toUpperCase()}</h3>
@@ -53,9 +52,13 @@ class PrintSelfAnd360 extends React.Component {
       );
     });
 
+    const data = user.survey.map((d) => ({
+      ...d,
+      factor: factors.find((item) => item.surveyName === d.factor).name
+    }));
+
     return (
       <Fragment>
-        { coverPage }
         <PrintPage>
           <PrintHeader name={`${data.first_name} ${data.last_name}`} />
           <div className="columns is-multiline">
@@ -71,24 +74,18 @@ class PrintSelfAnd360 extends React.Component {
             </div>
           </div>
         </PrintPage>
-        <PrintPage>
-          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
-          <div className="columns is-multiline">
-            <h2 className="column is-12 has-text-centered title">Absolute Scores</h2>
-            <div className="column is-half">
-              <h2 className="has-text-centered is-size-3">Self Assessment</h2>
-              <RadialBarChart data={selfData} type={'absolute'} />
-            </div>
-            <div className="column is-half">
-              <h2 className="has-text-centered is-size-3">360 Assessment</h2>
-              <RadialBarChart data={thirdPartyData} type={'absolute'} />
-            </div>
-          </div>
-        </PrintPage>
         { percentilePages }
         <PrintPage>
-          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
-          <ItemLevelTable data={itemLevelData} hasEnough360Ratings />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <ItemLevelTable user={user} data={data} hasEnough360Ratings={user.hasEnough360Ratings} />
+        </PrintPage>
+        <PrintPage>
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <div className="columns is-multiline">
+            <div className="column is-12">
+              <BiasMeasurementScatterplot userData={user} />
+            </div>
+          </div>
         </PrintPage>
       </Fragment>
     );
@@ -98,6 +95,6 @@ class PrintSelfAnd360 extends React.Component {
 export default PrintSelfAnd360;
 
 PrintSelfAnd360.propTypes = {
-  data: PropTypes.object,
+  user: PropTypes.object,
   handleLoad: PropTypes.func
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'd3-format';
 import { matchColor } from 'utils/chartHelperFunctions';
@@ -66,53 +66,62 @@ export default class ItemLevelTable extends React.Component {
       );
     }
 
+    const classSubmissions = this.props.user.group_avgs.classmates.Submissions;
+
     return (
-      <table className="table is-hoverable is-fullwidth">
-        <thead>
-          <tr>
-            <StyledTh
-              onClick={() => this.sortValues('factor', false)}
-            >
-              Influence Factor
-            </StyledTh>
-            { avgRatingHeader }
-            <StyledTh
-              onClick={() => this.sortValues('selfRating')}
-            >
-              Self Rating
-            </StyledTh>
-            { biasHeader }
-            <StyledTh
-              onClick={() => this.sortValues('classMean')}
-            >
-              Class Mean
-            </StyledTh>
-            <StyledTh
-              onClick={() => this.sortValues('classStdev')}
-            >
-              Class StDev
-            </StyledTh>
-            <StyledTh
-              onClick={() => this.sortValues('zScore')}
-            >
-              Z-score
-            </StyledTh>
-            <StyledTh
-              onClick={() => this.sortValues('survey_item.i')}
-            >
-              Survey Item
-            </StyledTh>
-          </tr>
-        </thead>
-        <tbody>
-          { tableItems }
-        </tbody>
-      </table>
+      <Fragment>
+        <div className="section">
+          <h2 className="has-text-centered is-size-3">Item-Level Summary</h2>
+          <h3 className="has-text-centered is-size-5">Your class contains: {classSubmissions} {classSubmissions > 1 ? 'submissions' : 'submission'}</h3>
+        </div>
+        <table className="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <StyledTh
+                onClick={() => this.sortValues('factor', false)}
+              >
+                Influence Factor
+              </StyledTh>
+              { avgRatingHeader }
+              <StyledTh
+                onClick={() => this.sortValues('selfRating')}
+              >
+                Self Rating
+              </StyledTh>
+              { biasHeader }
+              <StyledTh
+                onClick={() => this.sortValues('classMean')}
+              >
+                Class Mean
+              </StyledTh>
+              <StyledTh
+                onClick={() => this.sortValues('classStdev')}
+              >
+                Class StDev
+              </StyledTh>
+              <StyledTh
+                onClick={() => this.sortValues('zScore')}
+              >
+                Z-score
+              </StyledTh>
+              <StyledTh
+                onClick={() => this.sortValues('survey_item.i')}
+              >
+                Survey Item
+              </StyledTh>
+            </tr>
+          </thead>
+          <tbody>
+            { tableItems }
+          </tbody>
+        </table>
+      </Fragment>
     );
   }
 }
 
 ItemLevelTable.propTypes = {
   data: PropTypes.array,
-  hasEnough360Ratings: PropTypes.any
+  hasEnough360Ratings: PropTypes.any,
+  user: PropTypes.any
 };
