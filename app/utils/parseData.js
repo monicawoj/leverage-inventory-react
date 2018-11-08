@@ -1,5 +1,7 @@
 export default function getData(data, view, group) {
   // console.log(data);
+  console.log(group);
+  group = group || 'classmates';
 
   if (view === 'absolute') {
     const self_data = [

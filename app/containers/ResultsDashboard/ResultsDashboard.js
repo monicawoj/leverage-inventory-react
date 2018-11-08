@@ -69,7 +69,7 @@ const ResultsDashboard = ({ user }) => {
             to="/your-leverage-inventory/your-results/print-report/"
             target="_blank"
             className="button is-fullwidth is-primary"
-            fullheight
+            fullheight="true"
           >
             <p className="title has-text-centered has-text-white">Full PDF Report</p>
             <p className="subtitle has-text-centered has-text-white">Printable PDF report of your results</p>

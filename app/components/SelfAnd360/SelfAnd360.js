@@ -5,6 +5,9 @@ import getData from 'utils/parseData';
 import { StyledBox } from 'containers/UserResultsPage/styles';
 
 const SelfAnd360 = ({ data, view, comparisonGroup }) => {
+  // console.log(data);
+  // console.log(comparisonGroup);
+
   const {
     selfData,
     thirdPartyData,

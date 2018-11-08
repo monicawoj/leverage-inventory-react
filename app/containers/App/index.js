@@ -34,7 +34,6 @@ const mapStateToProps = (state) => {
   });
 };
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 
-export default compose(withConnect)(App);
 export { mapDispatchToProps };

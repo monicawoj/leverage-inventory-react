@@ -44,6 +44,6 @@ export default GroupOptions;
 
 GroupOptions.propTypes = {
   groups: PropTypes.array,
-  selectedGroup: PropTypes.object,
+  selectedGroup: PropTypes.any,
   changeComparisonGroup: PropTypes.func
 };
