@@ -18,26 +18,20 @@ class PrintSelfAnd360 extends React.Component {
   render() {
     const { user } = this.props;
     const {
-      selfData, sortedSelfData, thirdPartyData, sortedThirdPartyData
+      sortedSelfData, sortedThirdPartyData
     } = getData(user, 'absolute');
 
-    // const coverPage = (
-    //   <PrintPage>
-    //     <PrintHeader name={`${data.first_name} ${data.last_name}`} noLegend />
-    //     <PrintReportDescription />
-    //   </PrintPage>
-    // );
-
-    const percentilePages = user.groups.map((group) => {
+    const percentilePages = user.groups.filter((group) => group === 'classmates').map((group) => {
       const selfChartData = getData(user, 'percentile', group).selfData;
       const thirdPartyChartData = getData(user, 'percentile', group).thirdPartyData;
 
       return (
         <PrintPage key={group}>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Percentile Scores</h2>
             <h3 className="column is-12 has-text-centered subtitle">vs. {group.toUpperCase()}</h3>
+            <h3 className="column is-12 has-text-centered subtitle">Number of Submissions: {`${thirdPartyChartData[0].Submissions}`}</h3>
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">Self Assessment</h2>
               <RadialBarChart data={selfChartData} type={'percentile'} />
@@ -46,7 +40,6 @@ class PrintSelfAnd360 extends React.Component {
               <h2 className="has-text-centered is-size-3">360 Assessment</h2>
               <RadialBarChart data={thirdPartyChartData} type={'percentile'} />
             </div>
-            {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit sed tempora ipsa ad, ut, praesentium excepturi a aut molestiae nostrum possimus facilis corporis eveniet dolores delectus quibusdam hic labore aspernatur.</p> */}
           </div>
         </PrintPage>
       );
@@ -60,33 +53,33 @@ class PrintSelfAnd360 extends React.Component {
     return (
       <Fragment>
         <PrintPage>
-          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Absolute Scores</h2>
             <StyledDivWithBorder className="column is-half">
               <h2 className="has-text-centered is-size-3">Self Assessment</h2>
               <HorizontalBarChart data={sortedSelfData} />
             </StyledDivWithBorder>
-
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">360 Assessment</h2>
               <HorizontalBarChart data={sortedThirdPartyData} />
             </div>
           </div>
         </PrintPage>
-        { percentilePages }
         <PrintPage>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
-          <ItemLevelTable user={user} data={data} hasEnough360Ratings={user.hasEnough360Ratings} />
-        </PrintPage>
-        <PrintPage>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <div className="column is-12">
               <BiasMeasurementScatterplot userData={user} />
             </div>
           </div>
         </PrintPage>
+        { percentilePages[0] }
+        <PrintPage>
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
+          <ItemLevelTable user={user} data={data} hasEnough360Ratings={user.hasEnough360Ratings} />
+        </PrintPage>
+        
       </Fragment>
     );
   }
