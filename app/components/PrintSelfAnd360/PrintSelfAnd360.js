@@ -34,10 +34,11 @@ class PrintSelfAnd360 extends React.Component {
 
       return (
         <PrintPage key={group}>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Percentile Scores</h2>
             <h3 className="column is-12 has-text-centered subtitle">vs. {group.toUpperCase()}</h3>
+            <h4 className="column is-12 has-text-centered subtitle">Number of Submissions: {`${thirdPartyChartData[0].Submissions}`}</h4>
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">Self Assessment</h2>
               <RadialBarChart data={selfChartData} type={'percentile'} />
@@ -60,7 +61,7 @@ class PrintSelfAnd360 extends React.Component {
     return (
       <Fragment>
         <PrintPage>
-          <PrintHeader name={`${data.first_name} ${data.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <h2 className="column is-12 has-text-centered title">Absolute Scores</h2>
             <StyledDivWithBorder className="column is-half">
@@ -76,11 +77,11 @@ class PrintSelfAnd360 extends React.Component {
         </PrintPage>
         { percentilePages }
         <PrintPage>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <ItemLevelTable user={user} data={data} hasEnough360Ratings={user.hasEnough360Ratings} />
         </PrintPage>
         <PrintPage>
-          <PrintHeader name={`${user.first_name} ${user.last_name}`} />
+          <PrintHeader name={`${user.first_name} ${user.last_name}`} raters={`${user.numOfRatersComplete}`} />
           <div className="columns is-multiline">
             <div className="column is-12">
               <BiasMeasurementScatterplot userData={user} />
