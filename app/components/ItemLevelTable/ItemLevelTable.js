@@ -36,8 +36,8 @@ export default class ItemLevelTable extends React.Component {
     const tableItems = data.map((d) => (
       <tr key={d.survey_item.i}>
         <StyledTd color={matchColor(d.factor)}>{d.factor}</StyledTd>
-        { hasEnough360Ratings ? <td>{round(d.avgRating)}</td> : null}
         <td>{round(d.selfRating)}</td>
+        { hasEnough360Ratings ? <td>{round(d.avgRating)}</td> : null}
         { hasEnough360Ratings ? <td>{round(d.bias)}</td> : null}
         <td>{round(d.classMean)}</td>
         <td>{round(d.classStdev)}</td>
@@ -61,7 +61,7 @@ export default class ItemLevelTable extends React.Component {
         <StyledTh
           onClick={() => this.sortValues('bias')}
         >
-          Bias
+          Bias (Self-360)
         </StyledTh>
       );
     }
@@ -82,27 +82,27 @@ export default class ItemLevelTable extends React.Component {
               >
                 Influence Factor
               </StyledTh>
-              { avgRatingHeader }
               <StyledTh
                 onClick={() => this.sortValues('selfRating')}
               >
                 Self Rating
               </StyledTh>
+              { avgRatingHeader }
               { biasHeader }
               <StyledTh
                 onClick={() => this.sortValues('classMean')}
               >
-                Class Mean
+                Class Mean, 360
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('classStdev')}
               >
-                Class StDev
+                Class StDev, 360
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('zScore')}
               >
-                Z-score
+                Z-score, 360
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('survey_item.i')}

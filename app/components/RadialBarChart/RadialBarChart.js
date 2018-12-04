@@ -4,10 +4,10 @@ import { select, selectAll } from 'd3-selection';
 import { scaleSqrt } from 'd3-scale';
 import { arc } from 'd3-shape';
 import { axisRight } from 'd3-axis';
-import { event as d3event, mouse } from 'd3-selection';
 import { format } from 'd3-format';
 import { Tooltip, ResponsiveWrapper } from 'components/D3Components';
 import { svgRotate, svgTranslate, matchColor } from 'utils/chartHelperFunctions';
+import { factors } from 'utils/factorsList';
 import { StyledCircle, StyledOuterCircle, StyledText, CenteredSvg, StyledLine, StyledPath } from './styles';
 
 const RadialBarChart = ({ data, type, parentWidth, small }) => {
@@ -25,7 +25,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
 
   const formatTwoDecimals = format('.2f');
   // const barHeight = print ? (double ? 170 : 190) : Math.min(parentWidth / 2, 220);
-  const barHeight = small ? 190 : Math.min(parentWidth / 2, 220);
+  const barHeight = Math.min(parentWidth / 2, 220);
 
   let domain = [0, 3];
   let tickLabels = ['1 (rarely or never)', '2 (occasionally)', '3 (often)', '4 (almost always)'];
@@ -34,9 +34,15 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   let tickCircleValues = [1, 2];
   if (type === 'percentile') {
     domain = [0, 1];
-    tickValues = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
-    tickLabels = ['10th', '20th', '30th', '40th', '50th', '60th', '70th', '80th', '90th'];
+    tickValues = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+    tickLabels = ['10th', '20th', '30th', '40th', '50th', '60th', '70th', '80th'];
     tickCircleValues = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+    if (small) {
+      domain = [0, 1];
+      tickValues = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+      tickLabels = ['10th', '20th', '30th', '40th', '50th', '60th', '70th', '80th'];
+      tickCircleValues = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+    }
   }
 
   // Scales & other useful things
@@ -58,7 +64,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
       key={d}
       y={d==0 || d==1 || d==2 || d==3 ? -5 : 0}
       x={d==0 || d==1 || d==2 || d==3 ? 0 : 7}
-      style={{ textAnchor: 'start' }}
+      style={{ textAnchor: 'start'}}
     />
   ));
 
@@ -81,13 +87,14 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   const labels = keys.map((d, i) => (
     <StyledText
       key={d}
+      small={small}
     >
       <textPath
         className="textpath"
         href="#label-path"
         startOffset={`${((i * 100) / numBars) + (50 / numBars)}%`}
       >
-        { d.toUpperCase() }
+        { factors.filter((factor) => factor.name === d)[0].radialName.toUpperCase() }
       </textPath>
     </StyledText>
   ));
@@ -159,8 +166,13 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
             </def>
             { labels }
           </g>
-          <g className="axis">
-            <g ref={(node) => select(node).call(axis)}>
+          <g className="axis" style={{ fontSize: small ? '6px !important' : '0.32em' }}>
+            <g
+              ref={(node) => {
+                select(node).call(axis);
+                selectAll('.tick text').style('font-size', '8px').attr('x', '6');
+              }}
+            >
               { axisTicks }
             </g>
           </g>
@@ -185,5 +197,6 @@ RadialBarChart.propTypes = {
     'absolute',
     'percentile'
   ]),
-  parentWidth: PropTypes.number
+  parentWidth: PropTypes.number,
+  small: PropTypes.bool,
 };

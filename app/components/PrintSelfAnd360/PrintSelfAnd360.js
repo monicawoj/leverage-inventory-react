@@ -34,11 +34,11 @@ class PrintSelfAnd360 extends React.Component {
             <h3 className="column is-12 has-text-centered subtitle">Number of Submissions: {`${thirdPartyChartData[0].Submissions}`}</h3>
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">Self Assessment</h2>
-              <RadialBarChart data={selfChartData} type={'percentile'} />
+              <RadialBarChart data={selfChartData} type={'percentile'} small />
             </div>
             <div className="column is-half">
               <h2 className="has-text-centered is-size-3">360 Assessment</h2>
-              <RadialBarChart data={thirdPartyChartData} type={'percentile'} />
+              <RadialBarChart data={thirdPartyChartData} type={'percentile'} small />
             </div>
           </div>
         </PrintPage>
