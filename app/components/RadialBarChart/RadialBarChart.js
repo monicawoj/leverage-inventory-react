@@ -63,7 +63,7 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
     <text
       key={d}
       y={d==0 || d==1 || d==2 || d==3 ? -5 : 0}
-      x={d==0 || d==1 || d==2 || d==3 ? 0 : 17}
+      x={d==0 || d==1 || d==2 || d==3 ? 0 : 7}
       style={{ textAnchor: 'start'}}
     />
   ));
@@ -167,7 +167,13 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
             { labels }
           </g>
           <g className="axis" style={{ fontSize: small ? '6px !important' : '0.32em' }}>
-            <g ref={(node) => select(node).call(axis)}>
+            <g
+              ref={(node) => {
+                select(node).call(axis);
+                console.log(selectAll('.tick text'));
+                selectAll('.tick text').style('font-size', '8px').attr('x', '6');
+              }}
+            >
               { axisTicks }
             </g>
           </g>
