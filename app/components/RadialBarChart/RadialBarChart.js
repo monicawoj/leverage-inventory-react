@@ -170,7 +170,6 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
             <g
               ref={(node) => {
                 select(node).call(axis);
-                console.log(selectAll('.tick text'));
                 selectAll('.tick text').style('font-size', '8px').attr('x', '6');
               }}
             >
