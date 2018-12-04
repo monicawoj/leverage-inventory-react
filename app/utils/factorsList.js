@@ -3,72 +3,84 @@ export const factors = [
     name: 'Agency',
     abrev: 'Ag',
     dataName: 'Agency',
-    surveyName: 'agency'
+    surveyName: 'agency',
+    radialName: 'Agency'
   },
   {
     name: 'Allocentrism',
-    abrev: 'Al',
+    abrev: 'Allo',
     dataName: 'Allocentrism',
-    surveyName: 'allo'
+    surveyName: 'allo',
+    radialName: 'Allo'
   },
   {
     name: 'Coalitions',
-    abrev: 'Co',
+    abrev: 'Coal',
     dataName: 'Coalition',
-    surveyName: 'coalitions'
+    surveyName: 'coalitions',
+    radialName: 'Coalitions'
   },
   {
     name: 'Ethos',
-    abrev: 'Es',
+    abrev: 'Eth',
     dataName: 'Ethos',
-    surveyName: 'ethos'
+    surveyName: 'ethos',
+    radialName: 'Ethos'
   },
   {
     name: 'Exchange',
     abrev: 'Ex',
     dataName: 'Exchange',
-    surveyName: 'exchange'
+    surveyName: 'exchange',
+    radialName: 'Exchange'
   },
   {
     name: 'Intentionality',
-    abrev: 'In',
+    abrev: 'Int',
     dataName: 'Intentionality',
-    surveyName: 'intent'
+    surveyName: 'intent',
+    radialName: 'Intent'
   },
   {
     name: 'Logos',
-    abrev: 'Ls',
+    abrev: 'Log',
     dataName: 'Logos',
-    surveyName: 'logos'
+    surveyName: 'logos',
+    radialName: 'Logos'
   },
   {
     name: 'Might',
-    abrev: 'Mt',
+    abrev: 'Mig',
     dataName: 'Might',
-    surveyName: 'might'
+    surveyName: 'might',
+    radialName: 'Might'
   },
   {
     name: 'Networks',
-    abrev: 'Nt',
+    abrev: 'Net',
     dataName: 'Network',
-    surveyName: 'net'
+    surveyName: 'net',
+    radialName: 'Networks'
   },
   {
     name: 'Pathos',
-    abrev: 'Ps',
+    abrev: 'Pat',
     dataName: 'Pathos',
-    surveyName: 'pathos'
+    surveyName: 'pathos',
+    radialName: 'Pathos'
   },
   {
     name: 'Sit. Awareness',
-    abrev: 'Sa',
+    abrev: 'SA',
     dataName: 'SA',
-    surveyName: 'sa'
+    surveyName: 'sa',
+    radialName: 'S.A.'
   },
   {
     name: 'Team-building',
-    abrev: 'Tm',
+    abrev: 'Team',
     dataName: 'Team',
-    surveyName: 'team'
+    surveyName: 'team',
+    radialName: 'Team'
   }
 ];

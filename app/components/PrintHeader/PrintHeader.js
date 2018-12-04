@@ -28,6 +28,6 @@ export default PrintHeader;
 
 PrintHeader.propTypes = {
   name: PropTypes.string,
-  raters: PropTypes.number,
+  raters: PropTypes.string,
   noLegend: PropTypes.bool
 };

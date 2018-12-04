@@ -14,7 +14,7 @@ export const StyledOuterCircle = styled.circle`
 `;
 
 export const StyledText = styled.text`
-  font-size: 10px;
+  font-size: ${(props) => props.small ? '8px' : '10px'};
   text-anchor: middle;
 `;
 
