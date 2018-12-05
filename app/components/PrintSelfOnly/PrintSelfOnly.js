@@ -17,14 +17,7 @@ class PrintSelfOnly extends React.Component {
     const { user } = this.props;
     const { selfData, sortedSelfData } = getData(user, 'absolute');
 
-    // const coverPage = (
-    //   <PrintPage>
-    //     <PrintHeader name={`${user.first_name} ${user.last_name}`} noLegend />
-    //     <PrintReportDescription />
-    //   </PrintPage>
-    // );
-
-    const percentilePages = user.groups.map((group) => {
+    const percentilePages = user.groups.filter((group) => group === 'classmates').map((group) => {
       const chartData = getData(user, 'percentile', group).selfData;
 
       return (
@@ -34,7 +27,7 @@ class PrintSelfOnly extends React.Component {
             <p className="column is-12 has-text-centered title">Self Assessment: Percentile Scores</p>
             <p className="column is-12 has-text-centered subtitle">vs. {group.toUpperCase()}</p>
             <div className="column is-12">
-              <RadialBarChart data={chartData} type={'percentile'} small />
+              <RadialBarChart data={chartData} type={'percentile'} selfOnly small />
             </div>
             {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit sed tempora ipsa ad, ut, praesentium excepturi a aut molestiae nostrum possimus facilis corporis eveniet dolores delectus quibusdam hic labore aspernatur.</p> */}
           </div>
@@ -57,7 +50,7 @@ class PrintSelfOnly extends React.Component {
               <HorizontalBarChart data={sortedSelfData} />
             </div>
             <div className="column is-7">
-              <RadialBarChart data={selfData} type={'absolute'} print />
+              <RadialBarChart data={selfData} type={'absolute'} selfOnly small />
             </div>
           </div>
         </PrintPage>

@@ -33,7 +33,6 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
     .domain(data.map((d) => d.name));
 
   const mouseover = (e) => {
-    // selectAll('.bar').style('opacity', 0.5);
     select(e.target).style('opacity', 1);
     select('.tooltip').style('display', 'inline');
   };
@@ -82,7 +81,11 @@ const HorizontalBarChart = ({ data, parentWidth }) => {
       >
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g className="axis axis--y">
-            <g ref={(node) => select(node).call(axisLeft(y).tickSize(0))} />
+            <g
+              ref={(node) => {
+                select(node).call(axisLeft(y).tickSize(0));
+              }}
+            />
           </g>
           { bars }
         </g>

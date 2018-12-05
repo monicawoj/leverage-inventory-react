@@ -10,7 +10,7 @@ import { svgRotate, svgTranslate, matchColor } from 'utils/chartHelperFunctions'
 import { factors } from 'utils/factorsList';
 import { StyledCircle, StyledOuterCircle, StyledText, CenteredSvg, StyledLine, StyledPath } from './styles';
 
-const RadialBarChart = ({ data, type, parentWidth, small }) => {
+const RadialBarChart = ({ data, type, parentWidth, small, selfOnly }) => {
   const barData = Object.entries(data[0].data).map((array) => ({
     name: array[0],
     value: array[1]
@@ -24,8 +24,8 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
   };
 
   const formatTwoDecimals = format('.2f');
-  // const barHeight = print ? (double ? 170 : 190) : Math.min(parentWidth / 2, 220);
-  const barHeight = Math.min(parentWidth / 2, 220);
+  const barHeight = selfOnly ? 170 : Math.min(parentWidth / 2, 220);
+  // const barHeight = Math.min(parentWidth / 2, 220);
 
   let domain = [0, 3];
   let tickLabels = ['1 (rarely or never)', '2 (occasionally)', '3 (often)', '4 (almost always)'];
@@ -166,11 +166,11 @@ const RadialBarChart = ({ data, type, parentWidth, small }) => {
             </def>
             { labels }
           </g>
-          <g className="axis" style={{ fontSize: small ? '6px !important' : '0.32em' }}>
+          <g className="axis--radial" style={{ fontSize: small ? '6px !important' : '0.32em' }}>
             <g
               ref={(node) => {
                 select(node).call(axis);
-                selectAll('.tick text').style('font-size', '8px').attr('x', '6');
+                selectAll('axis--radial .tick text').style('font-size', '8px').attr('x', '6');
               }}
             >
               { axisTicks }
