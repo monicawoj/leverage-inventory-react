@@ -18,7 +18,9 @@ const HorizontalBarChartsPage = (props) => {
   const {
     sortedSelfData,
     sortedThirdPartyData
-  } = getData(user, view, comparisonGroup.name);
+  } = getData(user, 'absolute', 'classmates');
+
+  // const { selfData, sortedSelfData } = getData(user, 'absolute');
 
   const { hasEnough360Ratings } = user;
   // const hasEnough360Ratings = 1;
@@ -48,6 +50,7 @@ const HorizontalBarChartsPage = (props) => {
       </section>
     );
   } else {
+    console.log(sortedSelfData);
     charts = (
       <section className="section">
         <h2 className="has-text-centered is-size-3">Self Assessment</h2>
