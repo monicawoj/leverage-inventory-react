@@ -92,17 +92,17 @@ export default class ItemLevelTable extends React.Component {
               <StyledTh
                 onClick={() => this.sortValues('classMean')}
               >
-                Class Mean, 360
+                {`Class Mean ${hasEnough360Ratings ? ', 360' : ''}`}
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('classStdev')}
               >
-                Class StDev, 360
+                {`Class StDev ${hasEnough360Ratings ? ', 360' : ''}`}
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('zScore')}
               >
-                Z-score, 360
+                {`Z-score ${hasEnough360Ratings ? ', 360' : ''}`}
               </StyledTh>
               <StyledTh
                 onClick={() => this.sortValues('survey_item.i')}

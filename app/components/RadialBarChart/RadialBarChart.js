@@ -24,7 +24,7 @@ const RadialBarChart = ({ data, type, parentWidth, small, selfOnly }) => {
   };
 
   const formatTwoDecimals = format('.2f');
-  const barHeight = selfOnly ? 170 : Math.min(parentWidth / 2, 220);
+  const barHeight = selfOnly ? 190 : Math.min(parentWidth / 2, 220);
   // const barHeight = Math.min(parentWidth / 2, 220);
 
   let domain = [0, 3];
@@ -199,4 +199,5 @@ RadialBarChart.propTypes = {
   ]),
   parentWidth: PropTypes.number,
   small: PropTypes.bool,
+  selfOnly: PropTypes.bool,
 };
