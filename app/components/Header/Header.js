@@ -5,27 +5,39 @@ import StyledHeader from './styles';
 
 const saveAllPng = () => {
   const svgs = document.querySelectorAll('svg');
-  svgs.forEach((item, i) => saveSvgAsPng(item, `chart${i}.png`, { backgroundColor: 'white' }))
+  svgs.forEach((item, i) =>
+    saveSvgAsPng(item, `chart${i}.png`, { backgroundColor: 'white' })
+  );
 };
 
 const PngButton = () => (
-  <div className="columns is-centered">
-    <div className="column is-12">
-      <button
-        className="button is-info is-fullwidth"
-        // onClick={() => saveSvgAsPng(document.querySelector(`#${svgId}`), `${filename}.png`, { backgroundColor: 'white' })}
-        onClick={() => saveAllPng()}
-      >
-        Download charts (PNG)
-      </button>
-    </div>
+  <div className="column hasMinWidth">
+    <button
+      className="button is-info is-fullwidth"
+      onClick={() => saveAllPng()}
+    >
+      Download charts (PNG)
+    </button>
   </div>
 );
 
-const Header = () => (
+const ResourcesButton = () => (
+  <div className="column hasMinWidth">
+    <a href={'https://leverageinventory.com/resources/'}>
+      <button className="button is-info is-fullwidth">Resources</button>
+    </a>
+  </div>
+);
+
+const Header = ({ hasPngExport = true }) => (
   <StyledHeader>
-    <Link to="/your-leverage-inventory/your-results/">&larr; &nbsp; Back to Results Dashboard</Link>
-    <PngButton />
+    <Link to="/your-leverage-inventory/your-results/">
+      &larr; &nbsp; Back to Results Dashboard
+    </Link>
+    <div className="columns is-centered">
+      <ResourcesButton />
+      {hasPngExport && <PngButton />}
+    </div>
   </StyledHeader>
 );
 

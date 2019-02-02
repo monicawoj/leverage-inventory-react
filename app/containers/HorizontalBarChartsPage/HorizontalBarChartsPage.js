@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import HorizontalBarChart from 'components/HorizontalBarChart';
 import Header from 'components/Header';
 import ColorLegend from 'components/ColorLegend';
-import OpenEndedResponses from 'components/OpenEndedResponses';
 import Footer from 'components/Footer';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
@@ -15,10 +14,11 @@ const HorizontalBarChartsPage = (props) => {
     view, user, loading, error, comparisonGroup
   } = props;
 
-  const {
-    sortedSelfData,
-    sortedThirdPartyData
-  } = getData(user, 'absolute', 'classmates');
+  const { sortedSelfData, sortedThirdPartyData } = getData(
+    user,
+    'absolute',
+    'classmates'
+  );
 
   // const { selfData, sortedSelfData } = getData(user, 'absolute');
 
@@ -69,16 +69,21 @@ const HorizontalBarChartsPage = (props) => {
         <div />
         <ColorLegend />
       </StyledDiv>
-      { charts }
+      {charts}
     </Fragment>
   );
 
   return (
     <div>
-      <p>The Leverage Inventory measures your influence behavior in terms of 12 unique influence tactics, shown below. Each influence tactic maps to a specific subset of questions from the survey, which are averaged to produce a score. The scores reflect frequency of behavior: 1 = Rarely or Never, 2 = Occasionally, 3 = Often, 4 = Almost Always.</p>
+      <p>
+        The Leverage Inventory measures your influence behavior in terms of 12
+        unique influence tactics, shown below. Each influence tactic maps to a
+        specific subset of questions from the survey, which are averaged to
+        produce a score. The scores reflect frequency of behavior: 1 = Rarely or
+        Never, 2 = Occasionally, 3 = Often, 4 = Almost Always.
+      </p>
       <Header />
-      { content }
-      <OpenEndedResponses />
+      {content}
       <Footer />
     </div>
   );
@@ -87,16 +92,9 @@ const HorizontalBarChartsPage = (props) => {
 export default HorizontalBarChartsPage;
 
 HorizontalBarChartsPage.propTypes = {
-  view: PropTypes.oneOf([
-    'absolute',
-    'percentile',
-    'item-level'
-  ]),
+  view: PropTypes.oneOf(['absolute', 'percentile', 'item-level']),
   user: PropTypes.object,
   loading: PropTypes.bool,
   error: PropTypes.any,
-  comparisonGroup: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool
-  ])
+  comparisonGroup: PropTypes.oneOfType([PropTypes.object, PropTypes.bool])
 };

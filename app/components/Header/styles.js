@@ -21,6 +21,9 @@ const StyledHeader = styled.div`
       background-color: #f9f8fb;
     }
   }
+  .hasMinWidth {
+    min-width: 240px;
+  }
 `;
 
 export default StyledHeader;
