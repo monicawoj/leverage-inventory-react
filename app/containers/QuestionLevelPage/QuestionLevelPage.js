@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ColorLegend from 'components/ColorLegend';
 import Footer from 'components/Footer';
+import Header from 'components/Header';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
 import ItemLevelTable from 'components/ItemLevelTable';
@@ -42,8 +43,9 @@ const QuestionLevelPage = (props) => {
 
   const content = (
     <Fragment>
+      <Header hasPngExport={false} />
       <StyledDiv>
-        <Link to="/your-leverage-inventory/your-results/">&larr; &nbsp; Back to Results Dashboard</Link>
+        <div />
         <ColorLegend />
       </StyledDiv>
       { charts }

@@ -8,6 +8,7 @@ import ItemLevelTable from 'components/ItemLevelTable';
 import BiasMeasurementScatterplot from 'components/BiasMeasurementScatterplot';
 import getData from 'utils/parseData';
 import OpenEndedResponses from 'components/OpenEndedResponses';
+import PDFIntroPage from 'containers/PDFIntroPage/PDFIntroPage.js';
 import { factors } from 'utils/factorsList';
 import { StyledDivWithBorder } from './styles';
 
@@ -71,6 +72,14 @@ class PrintSelfAnd360 extends React.Component {
 
     return (
       <Fragment>
+        <PrintPage>
+          <PrintHeader
+            name={`${user.first_name} ${user.last_name}`}
+            raters={`${user.numOfRatersComplete}`}
+            noLegend
+          />
+          <PDFIntroPage />
+        </PrintPage>
         <PrintPage>
           <PrintHeader
             name={`${user.first_name} ${user.last_name}`}

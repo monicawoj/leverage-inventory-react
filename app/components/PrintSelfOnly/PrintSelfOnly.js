@@ -5,6 +5,7 @@ import RadialBarChart from 'components/RadialBarChart';
 import HorizontalBarChart from 'components/HorizontalBarChart';
 import PrintHeader from 'components/PrintHeader';
 import ItemLevelTable from 'components/ItemLevelTable';
+import PDFIntroPage from 'containers/PDFIntroPage/PDFIntroPage.js';
 import { factors } from 'utils/factorsList';
 import getData from 'utils/parseData';
 
@@ -42,6 +43,14 @@ class PrintSelfOnly extends React.Component {
 
     return (
       <Fragment>
+        <PrintPage>
+          <PrintHeader
+            name={`${user.first_name} ${user.last_name}`}
+            raters={`${user.numOfRatersComplete}`}
+            noLegend
+          />
+          <PDFIntroPage />
+        </PrintPage>
         <PrintPage>
           <PrintHeader name={`${user.first_name} ${user.last_name}`} />
           <div className="columns is-multiline">
