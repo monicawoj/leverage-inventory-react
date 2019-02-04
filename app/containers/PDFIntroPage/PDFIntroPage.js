@@ -37,11 +37,11 @@ const PDFIntroPage = () => (
       </StyledP>
       <StyledP>
         <strong>Know yourself.</strong> What is your comfort zone? What falls
-      outside of that and why?
+        outside of that and why?
       </StyledP>
       <StyledP>
-        <strong>Know your context.</strong> The way you deploy the same influence
-      tactic can vary across situations, people, and environments.
+        <strong>Know your context.</strong> The way you deploy the same
+        influence tactic can vary across situations, people, and environments.
       </StyledP>
     </div>
     <StyledHeader className="capitalized is-size-4">research</StyledHeader>
@@ -51,7 +51,7 @@ const PDFIntroPage = () => (
         published their expertise on these topics.
       </StyledP>
       <StyledP>
-        To get started, see our Additional Resources online at{' '}
+        To get started, see our <strong>Additional Resources</strong> online at{' '}
         <a href="https://leverageinventory.com/resources/">
           https://leverageinventory.com/resources/
         </a>
@@ -73,7 +73,8 @@ const PDFIntroPage = () => (
     <div className="box has-background-light">
       <StyledP>
         <strong>Use your strengths.</strong> These influence tactics compliment
-        each other, so pair a weakness with a strength for greater effectiveness.
+        each other, so pair a weakness with a strength for greater
+        effectiveness.
       </StyledP>
       <StyledP>
         <strong>Establish the rules of engagement</strong> "When this happens,
@@ -85,13 +86,14 @@ const PDFIntroPage = () => (
         <em>How</em> will you say it?
       </StyledP>
       <StyledP>
-        <strong>Be accountable.</strong> Have a buddy to ask about your progress.
+        <strong>Be accountable.</strong> Have a buddy to ask about your
+        progress.
       </StyledP>
     </div>
     <StyledP>
       Visit{' '}
-      <a href="https://leverageinventory.com">https://leverageinventory.com</a>
-      {' '}to learn more specific tips about each tactic.{' '}
+      <a href="https://leverageinventory.com">https://leverageinventory.com</a>{' '}
+      to learn more specific tips about each tactic.{' '}
     </StyledP>
   </div>
 );

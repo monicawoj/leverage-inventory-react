@@ -6,8 +6,10 @@ const OpenEndedResponses = ({ data = [] }) => {
   if (data.length < 1) {
     return (
       <StyledDiv>
-        <h2 className="is-size-3">
-          No open ended responses from your 360 raters
+        <h2 className="is-size-5">
+          <div className="box has-background-light">
+            <strong>No open-ended responses from your 360 raters</strong>
+          </div>
         </h2>
       </StyledDiv>
     );

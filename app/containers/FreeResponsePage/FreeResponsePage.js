@@ -16,6 +16,7 @@ const FreeResponsePage = ({ user, error, loading }) => {
 
   return (
     <div>
+      <h4 className="is-size-3">360 Feedback</h4>
       <p>Additional thoughts from your 360 raters</p>
       <Header hasPngExport={false} />
       <OpenEndedResponses data={user.openEndedResponses} />

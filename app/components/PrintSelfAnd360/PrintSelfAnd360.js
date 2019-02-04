@@ -128,6 +128,18 @@ class PrintSelfAnd360 extends React.Component {
             raters={`${user.numOfRatersComplete}`}
             noLegend
           />
+          <h1
+            className="is-size-2"
+            style={{ width: '100%', textAlign: 'center' }}
+          >
+            360 Feedback
+          </h1>
+          <h2
+            className="is-size-4"
+            style={{ width: '100%', textAlign: 'center' }}
+          >
+            Additional thoughts from your 360 raters
+          </h2>
           <OpenEndedResponses data={user.openEndedResponses} />
         </PrintPage>
       </Fragment>

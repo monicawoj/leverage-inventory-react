@@ -43,7 +43,7 @@ const sections = [
     path: 'bias-measurement/'
   },
   {
-    title: 'Free Response Report',
+    title: '360 Feedback',
     subtitle: 'Additional thoughts from your 360 raters',
     path: 'free-response/'
   }
