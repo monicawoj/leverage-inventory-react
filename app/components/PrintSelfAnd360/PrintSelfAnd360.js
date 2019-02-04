@@ -128,13 +128,7 @@ class PrintSelfAnd360 extends React.Component {
             raters={`${user.numOfRatersComplete}`}
             noLegend
           />
-          <OpenEndedResponses
-            data={[
-              'test answer',
-              'another test answer',
-              'and another one that is a little longer than the others'
-            ]}
-          />
+          <OpenEndedResponses data={user.openEndedResponses} />
         </PrintPage>
       </Fragment>
     );
