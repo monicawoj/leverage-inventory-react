@@ -18,13 +18,7 @@ const FreeResponsePage = ({ user, error, loading }) => {
     <div>
       <p>Additional thoughts from your 360 raters</p>
       <Header hasPngExport={false} />
-      <OpenEndedResponses
-        data={[
-          'test answer',
-          'another test answer',
-          'and another one that is a little longer than the others'
-        ]}
-      />
+      <OpenEndedResponses data={user.openEndedResponses} />
     </div>
   );
 };
