@@ -8,7 +8,8 @@ import ItemLevelTable from 'components/ItemLevelTable';
 import BiasMeasurementScatterplot from 'components/BiasMeasurementScatterplot';
 import getData from 'utils/parseData';
 import OpenEndedResponses from 'components/OpenEndedResponses';
-import PDFIntroPage from 'containers/PDFIntroPage/PDFIntroPage.js';
+import PDFIntroPage from 'containers/PDFIntroPage/PDFIntroPage';
+import PerformanceQuestionTable from 'components/PerformanceQuestionTable';
 import { factors } from 'utils/factorsList';
 import { StyledDivWithBorder } from './styles';
 
@@ -134,13 +135,14 @@ class PrintSelfAnd360 extends React.Component {
           >
             360 Feedback
           </h1>
-          <h2
-            className="is-size-4"
-            style={{ width: '100%', textAlign: 'center' }}
-          >
-            Additional thoughts from your 360 raters
-          </h2>
-          <OpenEndedResponses data={user.openEndedResponses} />
+          <PerformanceQuestionTable user={user} data={data} />
+          <div>
+            <h2 className="is-size-3">Free Response Questions</h2>
+            <h3 className="is-size-4">
+              Additional thoughts from your 360 raters.
+            </h3>
+            <OpenEndedResponses data={user.openEndedResponses} />
+          </div>
         </PrintPage>
       </Fragment>
     );

@@ -4,6 +4,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import ErrorIndicator from 'components/ErrorIndicator';
 import Header from 'components/Header';
 import OpenEndedResponses from 'components/OpenEndedResponses';
+import PerformanceQuestionTable from 'components/PerformanceQuestionTable';
 
 const FreeResponsePage = ({ user, error, loading }) => {
   if (loading) {
@@ -19,6 +20,7 @@ const FreeResponsePage = ({ user, error, loading }) => {
       <h4 className="is-size-3">360 Feedback</h4>
       <p>Additional thoughts from your 360 raters</p>
       <Header hasPngExport={false} />
+      <PerformanceQuestionTable user={user} data={user.survey} />
       <OpenEndedResponses data={user.openEndedResponses} />
     </div>
   );
